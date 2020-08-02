@@ -1,0 +1,14 @@
+.cache/
+build/
+coverage/
+node_modules/
+.envrc
+.npmrc
+.DS_Store
+.eslintcache
+.jshintignore
+.jshintrc
+.stylelintcache
+.vscode
+npm-debug.log*
+*.iml
