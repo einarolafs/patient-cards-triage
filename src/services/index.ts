@@ -1,7 +1,7 @@
 import fetchService from './fetch-service'
-import getUserData from './get-user-data'
+import getCardsData from './get-cards-data'
 
 export {
   fetchService,
-  getUserData
+  getCardsData
 }

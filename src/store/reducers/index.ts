@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import credentials from './credentials'
+import addCards from './add-cards'
 
 export default combineReducers({
-  credentials
+  addCards
 })

@@ -1,7 +1,7 @@
 import StartPage from './start-page'
-import Cards from './cards'
+import CardsPage from './cards-page'
 
 export {
-  Cards,
+  CardsPage,
   StartPage
 }

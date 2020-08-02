@@ -1,9 +1,9 @@
 import { all, fork } from 'redux-saga/effects'
 
-import fetchData from './fetch-data'
+import fetchCards from './fetch-cards'
 
 export default function *rootSaga () {
   yield all([
-    fork(fetchData)
+    fork(fetchCards)
   ])
 }

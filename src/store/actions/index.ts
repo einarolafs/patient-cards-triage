@@ -1,5 +1,5 @@
-import addCredentials from './add-credentials'
+import getCards from './get-cards'
 
 export {
-  addCredentials
+  getCards
 }

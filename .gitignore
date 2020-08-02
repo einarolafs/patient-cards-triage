@@ -12,3 +12,4 @@ node_modules/
 .vscode
 npm-debug.log*
 *.iml
+server/db.json

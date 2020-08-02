@@ -1,48 +1,27 @@
 import store from './'
 
-const ADD_CREDENTIALS = 'ADD_CREDENTIALS'
-const ADD_USER_DATA = 'ADD_USER_DATA'
-const ADD_API_REFERENCES = 'ADD_API_REFERENCES'
-const USER_FETCH_REQUESTED = 'USER_FETCH_REQUESTED'
-const USER_FETCH_FAILED = 'USER_FETCH_FAILED'
-const ADD_REPOSITORIES = 'ADD_REPOSITORIES'
+const ADD_CARDS = 'ADD_CARDS'
+const DATA_FETCH_FAILED = 'DATA_FETCH_FAILED'
+const FETCH_CARDS_REQUESTED = 'FETCH_CARDS_REQUESTED'
 
 type ReduxDispatch = typeof store.dispatch
 
-interface Credentials {
-  userName: string | null;
-  token: string | null;
-}
-/* eslint-disable @typescript-eslint/ban-types */
-interface AddUserDataAction {
-  type: typeof ADD_USER_DATA;
-  data: object
-}
+enum CardStatus {PENDING = 'PENDING', REJECTED = 'REJECTED', DONE = 'DONE'}
 
-interface UserData {
-  [key: string]: string
-}
-
-interface ListData {
-  [key: string]: any
-}
-
-interface State {
-  repositories: ListData
-  userData: UserData,
-  credentials: Credentials
+/* eslint-disable camelcase */
+interface CardInterface {
+    arrhythmias: string[];
+    created_date: Date;
+    id: number;
+    patient_name: string;
+    status: CardStatus;
 }
 
 export {
-  ADD_API_REFERENCES,
-  ADD_CREDENTIALS,
-  ADD_USER_DATA,
-  ADD_REPOSITORIES,
-  USER_FETCH_REQUESTED,
-  USER_FETCH_FAILED,
-  Credentials,
-  AddUserDataAction,
+  ADD_CARDS,
+  DATA_FETCH_FAILED,
+  FETCH_CARDS_REQUESTED,
   ReduxDispatch,
-  State,
-  ListData
+  CardInterface,
+  CardStatus
 }
