@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import addCards from './add-cards'
+import cards from './cards'
 
 export default combineReducers({
-  addCards
+  cards
 })

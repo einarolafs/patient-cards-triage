@@ -9,8 +9,6 @@ const fetchService = async ({ url, method = 'GET', headers, body }: FetchProps):
   try {
     const response = await window.fetch(url, { method, headers, body })
 
-    console.log('reponse', response)
-
     if (!response.ok) {
       throw new Error(`${response.status}`)
     }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/react-router-dom": "^5.1.5",
+    "camelcase": "^6.0.0",
     "classcat": "^4.1.0",
     "concurrently": "^5.2.0",
     "json-server": "^0.16.1",

@@ -1,7 +1,5 @@
-import privateRepositories from './private-repositories'
-import publicRepositories from './public-repositories'
+import cardsByStatus from './cards-by-status'
 
 export {
-  privateRepositories,
-  publicRepositories
+  cardsByStatus
 }

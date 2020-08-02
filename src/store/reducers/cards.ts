@@ -1,13 +1,13 @@
 import * as types from '../types'
 
-const initial: types.CardInterface[] = []
+const initial: types.NormalizedCardInterface[] = []
 
 type Action = {
   type: string,
-  data: types.CardInterface[]
+  data: types.NormalizedCardInterface[]
 }
 
-const addCards = (state = initial, action: Action) => {
+const cards = (state = initial, action: Action) => {
   switch (action.type) {
     case types.ADD_CARDS:
       return [...state, ...action.data]
@@ -18,4 +18,4 @@ const addCards = (state = initial, action: Action) => {
   }
 }
 
-export default addCards
+export default cards

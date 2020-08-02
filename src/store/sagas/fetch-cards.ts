@@ -1,16 +1,22 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
+import camelcase from 'camelcase'
 
-import { ADD_CARDS, DATA_FETCH_FAILED, FETCH_CARDS_REQUESTED } from '../types'
+import { ADD_CARDS, DATA_FETCH_FAILED, FETCH_CARDS_REQUESTED, CardInterface } from '../types'
 import { getCardsData } from '../../services'
+
+const normaliseKeys = (cards: CardInterface[]) => cards.map((card) => {
+  const changedEntries = Object.entries(card).map(item => [camelcase(item[0]), item[1]])
+
+  return Object.fromEntries(changedEntries)
+})
 
 function *fetchCardsData ({ url }: {url: string}) {
   try {
-    console.log(url);
     const data = yield call(getCardsData, { url })
 
-    console.log(data)
+    const normaliseCardData = normaliseKeys(data)
 
-    yield put({ type: ADD_CARDS, data })
+    yield put({ type: ADD_CARDS, data: normaliseCardData })
   }
   catch (e) {
     yield put({ type: DATA_FETCH_FAILED, data: { error: e.message } })

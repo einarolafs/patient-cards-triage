@@ -17,11 +17,25 @@ interface CardInterface {
     status: CardStatus;
 }
 
+interface NormalizedCardInterface {
+  arrhythmias: string[];
+  createdDate: Date;
+  id: number;
+  patientName: string;
+  status: CardStatus;
+}
+
+interface State {
+  cards: NormalizedCardInterface[]
+}
+
 export {
   ADD_CARDS,
   DATA_FETCH_FAILED,
   FETCH_CARDS_REQUESTED,
   ReduxDispatch,
   CardInterface,
-  CardStatus
+  NormalizedCardInterface,
+  CardStatus,
+  State
 }

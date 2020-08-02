@@ -1,3 +1,3 @@
-import CardsPage from './cards-page.connect'
+import CardsPage from './cards-page.container'
 
 export default CardsPage
