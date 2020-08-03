@@ -7,7 +7,7 @@ module.exports = {
     'stylelint-config-standard',
 
     // https://github.com/pascalduez/stylelint-config-css-modules
-    'stylelint-config-css-modules'
+    'stylelint-config-css-modules',
   ],
   plugins: [
     'stylelint-a11y',
@@ -18,17 +18,17 @@ module.exports = {
     'stylelint-images',
     'stylelint-no-indistinguishable-colors',
     'stylelint-no-unsupported-browser-features',
-    'stylelint-scss'
+    'stylelint-scss',
   ],
   rules: {
     // https://github.com/YozhikM/stylelint-a11y
     // "a11y/font-size-is-readable": [true, { "severity": "warning" }],
     // "a11y/line-height-is-vertical-rhythmed": [true, { "severity": "warning" }],
-    'a11y/no-obsolete-attribute': [true, { 'severity': 'warning' }],
-    'a11y/no-obsolete-element': [true, { 'severity': 'warning' }],
+    'a11y/no-obsolete-attribute': [true, { severity: 'warning' }],
+    'a11y/no-obsolete-element': [true, { severity: 'warning' }],
     // "a11y/no-outline-none": true,
-    'a11y/no-spread-text': [true, { 'severity': 'warning' }],
-    'a11y/no-text-align-justify': [true, { 'severity': 'warning' }],
+    'a11y/no-spread-text': [true, { severity: 'warning' }],
+    'a11y/no-text-align-justify': [true, { severity: 'warning' }],
     'a11y/media-prefers-reduced-motion': true,
     'a11y/no-display-none': true,
     'a11y/selector-pseudo-class-focus': true,
@@ -95,12 +95,18 @@ module.exports = {
     'scss/dollar-variable-colon-space-before': 'never',
     'scss/dollar-variable-pattern': /^[a-z]*(-[a-z]*)*$/,
     'scss/dollar-variable-default': null,
-    'scss/dollar-variable-empty-line-before': ['always', { except: ['first-nested', 'after-comment', 'after-dollar-variable'] }],
+    'scss/dollar-variable-empty-line-before': [
+      'always',
+      { except: ['first-nested', 'after-comment', 'after-dollar-variable'] },
+    ],
     'scss/dollar-variable-no-missing-interpolation': true,
-    'scss/double-slash-comment-empty-line-before': ['always', {
-      except: ['first-nested'],
-      ignore: ['between-comments', 'stylelint-commands']
-    }],
+    'scss/double-slash-comment-empty-line-before': [
+      'always',
+      {
+        except: ['first-nested'],
+        ignore: ['between-comments', 'stylelint-commands'],
+      },
+    ],
     'scss/double-slash-comment-inline': null,
     'scss/double-slash-comment-whitespace-inside': 'always',
     'scss/declaration-nested-properties': ['never', { except: ['only-of-namespace'] }],
@@ -130,12 +136,15 @@ module.exports = {
     'images/prefer-data-uri': 512,
 
     // https://github.com/ismay/stylelint-no-unsupported-browser-features
-    'plugin/no-unsupported-browser-features': ['off', {
-      ignore: ['css-appearance', 'flexbox'],
-      severity: 'warning'
-    }],
+    'plugin/no-unsupported-browser-features': [
+      'off',
+      {
+        ignore: ['css-appearance', 'flexbox'],
+        severity: 'warning',
+      },
+    ],
 
     // https://github.com/ierhyna/stylelint-no-indistinguishable-colors
-    'plugin/stylelint-no-indistinguishable-colors': true
-  }
+    'plugin/stylelint-no-indistinguishable-colors': true,
+  },
 }

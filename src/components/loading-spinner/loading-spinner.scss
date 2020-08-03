@@ -3,17 +3,17 @@
   width: 2rem;
   height: 2rem;
   vertical-align: text-bottom;
-  border: .25em solid currentColor;
+  border: 0.25em solid currentColor;
   border-right-color: transparent;
   border-radius: 50%;
-  animation: spin .75s linear infinite;
+  animation: spin 0.75s linear infinite;
 }
 
 @keyframes spin {
   from {
-      transform:rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-      transform:rotate(360deg);
+    transform: rotate(360deg);
   }
 }

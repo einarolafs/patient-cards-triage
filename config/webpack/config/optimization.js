@@ -8,20 +8,20 @@ module.exports = () => ({
         terserOptions: {
           warnings: false,
           compress: {
-            toplevel: true
+            toplevel: true,
           },
           mangle: {
-            toplevel: true
+            toplevel: true,
           },
           output: {
-            beautify: false
-          }
+            beautify: false,
+          },
         },
         sourceMap: true,
         parallel: true,
-        cache: false
+        cache: false,
       }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
-  }
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+  },
 })

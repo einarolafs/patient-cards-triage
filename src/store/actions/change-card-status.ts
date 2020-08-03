@@ -4,8 +4,8 @@ const changeCardStatus = (id: string, status: string) => ({
   type: UPDATE_CARD_STATUS,
   payload: {
     id,
-    status
-  }
+    status,
+  },
 })
 
 export default changeCardStatus

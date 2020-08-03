@@ -12,10 +12,12 @@ module.exports = () => {
 
     '@babel/plugin-transform-named-capturing-groups-regex',
 
-    ['@babel/plugin-transform-runtime',
+    [
+      '@babel/plugin-transform-runtime',
       {
-        regenerator: true
-      }],
+        regenerator: true,
+      },
+    ],
 
     // https://github.com/tc39/proposal-class-fields
     ['@babel/plugin-proposal-class-properties', { loose: false }],
@@ -28,11 +30,11 @@ module.exports = () => {
         webpackHotModuleReloading: process.env.NODE_ENV === 'development',
         filetypes: {
           '.scss': {
-            syntax: 'postcss-scss'
-          }
-        }
-      }
-    ]
+            syntax: 'postcss-scss',
+          },
+        },
+      },
+    ],
   ]
 
   //
@@ -42,11 +44,11 @@ module.exports = () => {
   if (process.env.NODE_ENV === 'production') {
     // Remove console logs, which should be used only in development
     plugins.push([
-      'transform-remove-console' // { exclude: ['error', 'warn'] }
+      'transform-remove-console', // { exclude: ['error', 'warn'] }
     ])
   }
 
   return {
-    plugins
+    plugins,
   }
 }

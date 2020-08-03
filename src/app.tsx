@@ -11,7 +11,7 @@ import './app.scss'
 const App = () => (
   <Provider store={store}>
     <ErrorBoundary>
-      <Router/>
+      <Router />
     </ErrorBoundary>
   </Provider>
 )

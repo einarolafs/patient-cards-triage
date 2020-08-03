@@ -4,20 +4,20 @@ import paths from './paths'
 
 interface Routes {
   [key: string]: {
-    path: string,
-    page: React.ComponentClass<any, any> | React.FunctionComponent<any>,
+    path: string
+    page: React.ComponentClass<any, any> | React.FunctionComponent<any>
   }
 }
 
 const routes: Routes = {
   root: {
     path: paths.ROOT,
-    page: Pages.StartPage
+    page: Pages.StartPage,
   },
   cards: {
     path: paths.CARDS,
-    page: Pages.CardsPage
-  }
+    page: Pages.CardsPage,
+  },
 }
 
 export default routes

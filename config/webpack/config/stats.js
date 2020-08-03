@@ -10,9 +10,9 @@ module.exports = (options) => {
           statsFilename: '../report/stats.json',
           defaultSizes: 'gzip',
           generateStatsFile: true,
-          openAnalyzer: !options.ci
-        })
-      ]
+          openAnalyzer: !options.ci,
+        }),
+      ],
     }
   }
 

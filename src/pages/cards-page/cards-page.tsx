@@ -7,15 +7,15 @@ import './cards-page.scss'
 
 type Props = {
   cards: {
-    pending: NormalizedCardInterface[],
-    rejected: NormalizedCardInterface[],
+    pending: NormalizedCardInterface[]
+    rejected: NormalizedCardInterface[]
     done: NormalizedCardInterface[]
   }
   actions: {
-    getCards: () => void,
-    addPage: (id: string, payload: Record<string, unknown>) => void,
+    getCards: () => void
+    addPage: (id: string, payload: Record<string, unknown>) => void
     changeCardStatus: (id: number, status: string) => void
-  },
+  }
   dragging?: number
 }
 
@@ -29,15 +29,19 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
 
   // console.log(cards)
 
-  const handleDrop = useCallback((event: SyntheticEvent, id: string) => {
-    const cardIsInCurrentColumn = cards[id].includes((card: NormalizedCardInterface) => card.id === dragging)
+  const handleDrop = useCallback(
+    (event: SyntheticEvent, id: string) => {
+      const cardIsInCurrentColumn = cards[id].includes((card: NormalizedCardInterface) => card.id === dragging)
 
-    if (!cardIsInCurrentColumn && dragging !== undefined) { // eslint-disable-line no-undefined
-      actions.changeCardStatus(dragging, id)
-    }
+      if (!cardIsInCurrentColumn && dragging !== undefined) {
+        // eslint-disable-line no-undefined
+        actions.changeCardStatus(dragging, id)
+      }
 
-    actions.updatePage('cards', { dragging: null })
-  }, [dragging, cards, actions])
+      actions.updatePage('cards', { dragging: null })
+    },
+    [dragging, cards, actions]
+  )
 
   const handleDragStart = useCallback((event: SyntheticEvent, id: string) => {
     actions.updatePage('cards', { dragging: id })
@@ -46,9 +50,11 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
 
   return (
     <div styleName="cards-view">
-      {columns.map(column => (
+      {columns.map((column) => (
         <Cards.Column key={column} id={column} onDrop={handleDrop} styleName={column}>
-          {cards[column].map((card: NormalizedCardInterface) => <Cards.Card key={card.id} onDragStart={handleDragStart} {...card}/>)}
+          {cards[column].map((card: NormalizedCardInterface) => (
+            <Cards.Card key={card.id} onDragStart={handleDragStart} {...card} />
+          ))}
         </Cards.Column>
       ))}
     </div>

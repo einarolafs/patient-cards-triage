@@ -11,11 +11,11 @@ import CardsPage from './cards-page'
 
 const mapStateToProps = (state: State) => ({
   cards: cardsByStatus(state),
-  dragging: state.pages.cards?.dragging
+  dragging: state.pages.cards?.dragging,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  actions: bindActionCreators({ getCards, addPage, updatePage, changeCardStatus }, dispatch)
+  actions: bindActionCreators({ getCards, addPage, updatePage, changeCardStatus }, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsPage)

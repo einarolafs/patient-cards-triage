@@ -7,8 +7,8 @@ type Payload = {
 }
 
 type Action = {
-  type: string,
-  id: string,
+  type: string
+  id: string
   payload: Payload
 }
 
@@ -22,8 +22,8 @@ const pages = (state = initial, action: Action) => {
       return {
         ...state,
         ...{
-          [action.id]: { ...state[action.id], ...updatePageContent(state[action.id], action.payload) }
-        }
+          [action.id]: { ...state[action.id], ...updatePageContent(state[action.id], action.payload) },
+        },
       }
     default:
       return state

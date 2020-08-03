@@ -3,17 +3,18 @@ import * as types from '../types'
 const initial: types.NormalizedCardInterface[] = []
 
 type Action = {
-  type: string,
+  type: string
   payload: types.NormalizedCardInterface[]
 }
 
-const updateCardStatus = (cards, payload) => cards.map((card) => {
-  if (card.id === payload.id) {
-    return { ...card, status: payload.status }
-  }
+const updateCardStatus = (cards, payload) =>
+  cards.map((card) => {
+    if (card.id === payload.id) {
+      return { ...card, status: payload.status }
+    }
 
-  return card
-})
+    return card
+  })
 
 const cards = (state = initial, action: Action) => {
   switch (action.type) {

@@ -9,10 +9,7 @@ const sagaMiddleware = createSagaMiddleware()
 /* eslint-disable-next-line no-underscore-dangle, no-extra-parens */
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(
-  reducers, /* preloadedState, */
-  composeEnhancers(applyMiddleware(sagaMiddleware))
-)
+const store = createStore(reducers /* preloadedState, */, composeEnhancers(applyMiddleware(sagaMiddleware)))
 
 sagaMiddleware.run(rootSaga)
 

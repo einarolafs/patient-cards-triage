@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = (options = {}) => ({
   resolve: {
-    extensions: ['.js', 'ts', 'tsx']
+    extensions: ['.js', 'ts', 'tsx'],
   },
 
   module: {
@@ -13,10 +13,10 @@ module.exports = (options = {}) => ({
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: options.ci ? false : path.join(process.cwd(), 'build/cache/babel')
-          }
-        }
-      }
-    ]
-  }
+            cacheDirectory: options.ci ? false : path.join(process.cwd(), 'build/cache/babel'),
+          },
+        },
+      },
+    ],
+  },
 })

@@ -4,21 +4,24 @@ import classcat from 'classcat'
 import './column.scss'
 
 type Props = {
-  id: string,
-  children: React.ReactChildren | React.ReactChild,
+  id: string
+  children: React.ReactChildren | React.ReactChild
   className?: string
-  styleName?: string,
+  styleName?: string
   onDrop?: (event: SyntheticEvent, id: string) => void
 }
 
 const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => {
   const [dragOver, setDragEnter] = useState(false)
 
-  const handleDrop = useCallback((event: SyntheticEvent) => {
-    event.preventDefault()
-    // ('drop', id)
-    onDrop?.(event, id)
-  }, [onDrop, id])
+  const handleDrop = useCallback(
+    (event: SyntheticEvent) => {
+      event.preventDefault()
+      // ('drop', id)
+      onDrop?.(event, id)
+    },
+    [onDrop, id]
+  )
 
   const handleDragEnter = useCallback((event: SyntheticEvent) => {
     event.preventDefault()
@@ -42,7 +45,17 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => 
   const classes = useMemo(() => classcat(['container', { 'drag-over': dragOver }]), [dragOver])
 
   return (
-    <ul styleName={classes} onDrop={handleDrop} onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragLeave={handleDragLeave} className={className} id={id}>{children}</ul>
+    <ul
+      styleName={classes}
+      onDrop={handleDrop}
+      onDragEnter={handleDragEnter}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      className={className}
+      id={id}
+    >
+      {children}
+    </ul>
   )
 }
 

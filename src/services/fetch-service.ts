@@ -1,8 +1,8 @@
 type FetchProps = {
-    url: string,
-    method?: 'GET' | 'PUT' | 'POST' | 'DELETE'
-    body?: BodyInit,
-    headers?: Headers,
+  url: string
+  method?: 'GET' | 'PUT' | 'POST' | 'DELETE'
+  body?: BodyInit
+  headers?: Headers
 }
 
 const fetchService = async ({ url, method = 'GET', headers, body }: FetchProps): Promise<JSON> => {
@@ -15,8 +15,7 @@ const fetchService = async ({ url, method = 'GET', headers, body }: FetchProps):
     const content = response.json()
 
     return content
-  }
-  catch (error) {
+  } catch (error) {
     return error
   }
 }

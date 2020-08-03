@@ -9,27 +9,31 @@ const UPDATE_CARD_STATUS = 'UPDATE_CARD_STATUS'
 
 type ReduxDispatch = typeof store.dispatch
 
-enum CardStatus {PENDING = 'pending', REJECTED = 'rejected', DONE = 'done'}
+enum CardStatus {
+  PENDING = 'pending',
+  REJECTED = 'rejected',
+  DONE = 'done',
+}
 
 /* eslint-disable camelcase */
 interface CardInterface {
-    arrhythmias: string[];
-    created_date: Date;
-    id: number;
-    patient_name: string;
-    status: CardStatus;
+  arrhythmias: string[]
+  created_date: Date
+  id: number
+  patient_name: string
+  status: CardStatus
 }
 
 interface NormalizedCardInterface {
-  arrhythmias: string[];
-  createdDate: Date;
-  id: number;
-  patientName: string;
-  status: CardStatus;
+  arrhythmias: string[]
+  createdDate: Date
+  id: number
+  patientName: string
+  status: CardStatus
 }
 
 interface State {
-  cards: NormalizedCardInterface[],
+  cards: NormalizedCardInterface[]
   pages: {
     [key: string]: Record<string, any>
   }
@@ -46,5 +50,5 @@ export {
   CardInterface,
   NormalizedCardInterface,
   CardStatus,
-  State
+  State,
 }

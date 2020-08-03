@@ -1,4 +1,7 @@
-enum Paths {ROOT = 'ROOT', CARDS = 'CARDS'}
+enum Paths {
+  ROOT = 'ROOT',
+  CARDS = 'CARDS',
+}
 
 type PathsObject = {
   [key in Paths]: string
@@ -6,7 +9,7 @@ type PathsObject = {
 
 const paths: PathsObject = {
   ROOT: '/',
-  CARDS: '/cards'
+  CARDS: '/cards',
 }
 
 export default paths

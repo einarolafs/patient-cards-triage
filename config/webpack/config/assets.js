@@ -9,9 +9,9 @@ module.exports = () => ({
         {
           from: '**/*',
           to: '.',
-          context: paths.contentBase
-        }
-      ]
-    })
-  ]
+          context: paths.contentBase,
+        },
+      ],
+    }),
+  ],
 })

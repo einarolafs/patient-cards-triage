@@ -7,7 +7,7 @@ module.exports = () => ({
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.join(paths.contentBase, 'index.html')
-    })
-  ]
+      template: path.join(paths.contentBase, 'index.html'),
+    }),
+  ],
 })

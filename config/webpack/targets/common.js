@@ -9,16 +9,17 @@ const resolve = require('../config/resolve')
 const sourceMaps = require('../config/source-maps')
 const vars = require('../config/vars')
 
-module.exports = options => merge(
-  entry(options),
-  sourceMaps(),
-  resolve(),
-  loaders.jsLoader(options),
-  loaders.scssLoader(),
-  loaders.imageLoader(),
-  loaders.fontLoader(),
-  vars(),
-  output(),
-  html(),
-  node()
-)
+module.exports = (options) =>
+  merge(
+    entry(options),
+    sourceMaps(),
+    resolve(),
+    loaders.jsLoader(options),
+    loaders.scssLoader(),
+    loaders.imageLoader(),
+    loaders.fontLoader(),
+    vars(),
+    output(),
+    html(),
+    node()
+  )

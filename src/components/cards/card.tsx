@@ -5,24 +5,38 @@ import { NormalizedCardInterface } from '../../store/types'
 
 const intlDate = new Intl.DateTimeFormat('en', {
   timeStyle: 'medium',
-  dateStyle: 'short'
+  dateStyle: 'short',
 })
 
 interface Props extends NormalizedCardInterface {
-  id: number,
-  className?: string,
-  onDragStart?: (event: SyntheticEvent, id: number) => void,
-  onDragEnd?: (event: SyntheticEvent, id: number) => void,
+  id: number
+  className?: string
+  onDragStart?: (event: SyntheticEvent, id: number) => void
+  onDragEnd?: (event: SyntheticEvent, id: number) => void
 }
 
-const Card: React.FC<Props> = ({ className, onDragStart, onDragEnd, id, patientName, createdDate, arrhythmias }: Props) => {
-  const handleDragStart = useCallback((event: SyntheticEvent) => {
-    onDragStart?.(event, id)
-  }, [onDragStart, id])
+const Card: React.FC<Props> = ({
+  className,
+  onDragStart,
+  onDragEnd,
+  id,
+  patientName,
+  createdDate,
+  arrhythmias,
+}: Props) => {
+  const handleDragStart = useCallback(
+    (event: SyntheticEvent) => {
+      onDragStart?.(event, id)
+    },
+    [onDragStart, id]
+  )
 
-  const handleDragEnd = useCallback((event: SyntheticEvent) => {
-    onDragEnd?.(event, id)
-  }, [onDragStart, id])
+  const handleDragEnd = useCallback(
+    (event: SyntheticEvent) => {
+      onDragEnd?.(event, id)
+    },
+    [onDragStart, id]
+  )
 
   return (
     <li styleName="card" draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} className={className}>

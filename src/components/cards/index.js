@@ -3,7 +3,7 @@ import Column from './column'
 
 const Cards = {
   Card,
-  Column
+  Column,
 }
 
 export default Cards

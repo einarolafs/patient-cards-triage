@@ -13,12 +13,10 @@ module.exports = () => ({
     disableHostCheck: true,
     overlay: {
       warnings: true,
-      errors: true
+      errors: true,
     },
     hot: true,
-    inline: true
+    inline: true,
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 })

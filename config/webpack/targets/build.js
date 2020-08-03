@@ -11,14 +11,8 @@ module.exports = (options = {}) => {
 
   const config = {
     bail: true,
-    mode: 'production'
+    mode: 'production',
   }
 
-  return merge(
-    common(options),
-    optimization(options),
-    assets(options),
-    stats(options),
-    config
-  )
+  return merge(common(options), optimization(options), assets(options), stats(options), config)
 }

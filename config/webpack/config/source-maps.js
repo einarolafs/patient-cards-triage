@@ -11,5 +11,5 @@ const devtool = (env) => {
 }
 
 module.exports = () => ({
-  devtool: devtool(process.env.NODE_ENV)
+  devtool: devtool(process.env.NODE_ENV),
 })

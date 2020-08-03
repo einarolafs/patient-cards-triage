@@ -8,11 +8,11 @@ module.exports = () => ({
             loader: 'file-loader',
             options: {
               name: '[name].[hash:8].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
-      }
-    ]
-  }
+              outputPath: 'fonts/',
+            },
+          },
+        ],
+      },
+    ],
+  },
 })

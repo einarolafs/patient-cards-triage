@@ -5,5 +5,5 @@ import pages from './pages'
 
 export default combineReducers({
   cards,
-  pages
+  pages,
 })

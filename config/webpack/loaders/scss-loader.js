@@ -15,29 +15,29 @@ module.exports = () => ({
               sourceMap: true,
               modules: {
                 mode: 'local',
-                localIdentName: '[name]__[local]__[hash:base64:6]'
-              }
-            }
+                localIdentName: '[name]__[local]__[hash:base64:6]',
+              },
+            },
           },
           {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              implementation: sass
-            }
-          }
-        ]
+              implementation: sass,
+            },
+          },
+        ],
       },
       {
         test: /\.svg$/u,
-        loader: 'file-loader'
-      }
-    ]
+        loader: 'file-loader',
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css',
-      allChunks: true
-    })
-  ]
+      allChunks: true,
+    }),
+  ],
 })

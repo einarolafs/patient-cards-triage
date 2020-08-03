@@ -1,6 +1,6 @@
 .cards-view {
   display: grid;
-  grid-template-areas: "pending rejected done";
+  grid-template-areas: 'pending rejected done';
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
 }

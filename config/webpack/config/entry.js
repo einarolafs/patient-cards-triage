@@ -8,6 +8,6 @@ module.exports = ({ hot }) => {
   entry.app.push('./src')
 
   return {
-    entry
+    entry,
   }
 }

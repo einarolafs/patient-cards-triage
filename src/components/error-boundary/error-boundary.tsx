@@ -8,26 +8,26 @@ type ErrorBoundaryProps = {
 }
 
 type ErrorBoundaryState = {
-  hasError: string | boolean,
+  hasError: string | boolean
   showError: boolean
 }
 
 class ErrorBoundary extends React.Component {
-  static getDerivedStateFromError (error: Error): { hasError: string } {
+  static getDerivedStateFromError(error: Error): { hasError: string } {
     return { hasError: error.toString() }
   }
 
-  constructor (props: ErrorBoundaryProps) {
+  constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = {
       hasError: false,
-      showError: false
+      showError: false,
     }
     this.props = props
   }
 
-  state: ErrorBoundaryState;
-  props: ErrorBoundaryProps;
+  state: ErrorBoundaryState
+  props: ErrorBoundaryProps
 
   handleReload = (event: SyntheticEvent): void => {
     event.preventDefault()
@@ -43,7 +43,7 @@ class ErrorBoundary extends React.Component {
     this.setState({ showError: !showError })
   }
 
-  render (): React.ReactChildren | React.ReactChild | JSX.Element {
+  render(): React.ReactChildren | React.ReactChild | JSX.Element {
     const { hasError, showError } = this.state
     const { children } = this.props
 
@@ -52,9 +52,18 @@ class ErrorBoundary extends React.Component {
         <div styleName="error-container">
           <div styleName="content">
             <h1>Something went wrong.</h1>
-            <p>Something seem to have failed in the application, try again by <a href="#" onClick={this.handleReload}>reloading</a></p>
-            <p>If the issue persists, contact the developer <a href="mailto:einsiol@gmail.com">contact the developer</a> </p>
-            <a href="#" onClick={this.handleShowError}>{showError ? 'Hide error' : 'Show Error'}</a>
+            <p>
+              Something seem to have failed in the application, try again by{' '}
+              <a href="#" onClick={this.handleReload}>
+                reloading
+              </a>
+            </p>
+            <p>
+              If the issue persists, contact the developer <a href="mailto:einsiol@gmail.com">contact the developer</a>{' '}
+            </p>
+            <a href="#" onClick={this.handleShowError}>
+              {showError ? 'Hide error' : 'Show Error'}
+            </a>
             {showError && <pre styleName="error">{hasError.toString()}</pre>}
           </div>
         </div>

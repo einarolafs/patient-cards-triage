@@ -8,12 +8,8 @@ module.exports = (options = {}) => {
   process.env.NODE_ENV = 'development'
 
   const config = {
-    mode: 'development'
+    mode: 'development',
   }
 
-  return merge(
-    common(options),
-    server(options),
-    config
-  )
+  return merge(common(options), server(options), config)
 }

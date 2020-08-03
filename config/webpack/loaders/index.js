@@ -7,5 +7,5 @@ module.exports = {
   fontLoader,
   imageLoader,
   jsLoader,
-  scssLoader
+  scssLoader,
 }

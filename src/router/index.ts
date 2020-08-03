@@ -4,7 +4,4 @@ import routes from './routes'
 
 export default Router
 
-export {
-  paths,
-  routes
-}
+export { paths, routes }
