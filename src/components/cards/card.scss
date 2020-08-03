@@ -1,6 +1,38 @@
+@import "../../color.scss";
+
 .card {
   display: block;
   min-height: 100px;
-  border: 1px solid;
-  margin: 5px;
+  background: $platinum;
+  padding: 20px 30px 10px 30px;
+  margin: 20px 30px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.name {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.arrhythmias h5 {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.arrhythmias ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.arrhythmias li {
+  margin: 0;
+  font-size: 0.8em;
+  margin-right: 0.5em;
+}
+
+.date {
+  font-size: 0.7em;
 }

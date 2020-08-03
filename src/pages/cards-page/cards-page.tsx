@@ -14,7 +14,8 @@ type Props = {
   actions: {
     getCards: () => void
     addPage: (id: string, payload: Record<string, unknown>) => void
-    changeCardStatus: (id: number, status: string) => void
+    updatePage: (pageId: string, status: Record<string, any>) => void
+    changeCardStatus: (cardId: number, status: string) => void
   }
   dragging?: number
 }
@@ -27,14 +28,12 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
     actions.getCards()
   }, [])
 
-  // console.log(cards)
-
   const handleDrop = useCallback(
     (event: React.DragEvent, id: string) => {
       const cardIsInCurrentColumn = cards[id].includes((card: NormalizedCardInterface) => card.id === dragging)
 
+      // eslint-disable-next-line no-undefined
       if (!cardIsInCurrentColumn && dragging !== undefined) {
-        // eslint-disable-line no-undefined
         actions.changeCardStatus(dragging, id)
       }
 
@@ -45,13 +44,17 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
 
   const handleDragStart = useCallback((event: React.DragEvent, id: string) => {
     actions.updatePage('cards', { dragging: id })
-    // console.log({ event, id })
+  }, [])
+
+  const handleFiltering = useCallback((event: { target: HTMLInputElement }) => {
+    console.log(event.target.value)
   }, [])
 
   return (
     <div styleName="cards-view">
+      <input styleName="filter" type="text" placeholder="filter content..." onChange={handleFiltering} />
       {columns.map((column) => (
-        <Cards.Column key={column} id={column} onDrop={handleDrop} styleName={column}>
+        <Cards.Column key={column} id={column} onDrop={handleDrop} styleName={column} title={column.toUpperCase()}>
           {cards[column].map((card: NormalizedCardInterface) => (
             <Cards.Card key={card.id} dragging={card.id === dragging} onDragStart={handleDragStart} {...card} />
           ))}

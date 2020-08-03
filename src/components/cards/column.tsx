@@ -9,9 +9,10 @@ type Props = {
   className?: string
   styleName?: string
   onDrop?: (event: React.DragEvent, id: string) => void
+  title: string
 }
 
-const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => {
+const Column: React.FC<Props> = ({ children, className, id, onDrop, title }: Props) => {
   const [dragOver, setDragEnter] = useState(false)
 
   const handleDrop = useCallback(
@@ -25,7 +26,8 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => 
 
   const handleDragEnter = useCallback((event: React.DragEvent) => {
     event.preventDefault()
-    // console.log('on drag enter', id)
+
+    setDragEnter(true)
 
     return false
   }, [])
@@ -33,7 +35,7 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => 
   const handleDragLeave = useCallback((event) => {
     event.preventDefault()
     // console.log('on drag leave', id, event.dataTransfer.items.length)
-    setDragEnter(true)
+    setDragEnter(false)
   }, [])
 
   const handleDragOver = useCallback((event) => {
@@ -54,6 +56,7 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => 
       className={className}
       id={id}
     >
+      <h2 styleName="title">{title}</h2>
       {children}
     </ul>
   )

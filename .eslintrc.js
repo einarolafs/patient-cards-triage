@@ -216,15 +216,6 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-sort-props': 'off',
-    'react/jsx-tag-spacing': [
-      'error',
-      {
-        closingSlash: 'never',
-        afterOpening: 'never',
-        beforeClosing: 'never',
-        beforeSelfClosing: 'never',
-      },
-    ],
     'react/no-did-mount-set-state': 'off',
     'react/no-did-update-set-state': 'off',
     'react/no-set-state': 'off',

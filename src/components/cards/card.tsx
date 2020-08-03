@@ -46,8 +46,17 @@ const Card: React.FC<Props> = ({
 
   return (
     <li styleName={classes} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} className={className}>
-      <h4>{patientName}</h4>
-      <p>{intlDate.format(new Date(createdDate))}</p>
+      <h4 styleName="name">Patient Name: {patientName}</h4>
+
+      <section styleName="arrhythmias">
+        <h5>Arrhythmias:</h5>
+        <ul>
+          {arrhythmias.map((arrhythmia) => (
+            <li key={arrhythmia}>{arrhythmia}</li>
+          ))}
+        </ul>
+      </section>
+      <p styleName="date">{intlDate.format(new Date(createdDate))}</p>
     </li>
   )
 }

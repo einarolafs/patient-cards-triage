@@ -1,7 +1,9 @@
 @import './color.scss';
 
 body {
-  margin: 0;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
   background: #dee2e6ff;
   color: $rich-black-fogra-29;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -9,4 +11,5 @@ body {
 
 :global(#root) {
   height: 100vh;
+  width: 100vw;
 }

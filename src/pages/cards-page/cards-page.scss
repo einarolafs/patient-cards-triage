@@ -1,24 +1,30 @@
+@import "../../color.scss";
+
 .cards-view {
   display: grid;
-  grid-template-areas: 'pending rejected done';
+  width: 100%;
+  height: 100vh;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 30px 1fr;
   justify-content: space-between;
+  grid-gap: 40px;
+  grid-template-areas:
+    "header . ."
+    "pending rejected done";
+}
+
+.filter {
+  grid-area: header;
 }
 
 .pending {
   grid-area: pending;
-  display: block;
-  background-color: gray;
 }
 
 .rejected {
   grid-area: rejected;
-  display: block;
-  background-color: red;
 }
 
 .done {
   grid-area: done;
-  display: block;
-  background-color: green;
 }
