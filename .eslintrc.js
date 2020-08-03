@@ -7,30 +7,30 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true
+    node: true,
   },
   globals: {
     // build environment variables
     VERSION: false,
-    ENVIRONMENT: false
+    ENVIRONMENT: false,
   },
   parserOptions: {
     ecmaVersion: 2020,
     ecmaFeatures: {
       jsx: true,
-      generators: true
+      generators: true,
     },
-    sourceType: 'module'
+    sourceType: 'module',
   },
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.ts', '.tsx']
+        extensions: ['.js', '.ts', '.tsx'],
       },
       alias: {
-        map: [['src', path.resolve(__dirname, 'src')]]
-      }
-    }
+        map: [['src', path.resolve(__dirname, 'src')]],
+      },
+    },
   },
   plugins: [
     'import',
@@ -42,7 +42,8 @@ module.exports = {
     'css-modules',
     'compat',
     'react-hooks',
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'prettier',
   ],
   extends: [
     'eslint:all',
@@ -53,7 +54,12 @@ module.exports = {
     'plugin:promise/recommended',
     'plugin:css-modules/recommended',
     'plugin:compat/recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'prettier/babel',
+    'prettier/react',
+    'plugin:prettier/recommended',
   ],
   rules: {
     // http://eslint.org/docs/rules/
@@ -94,12 +100,15 @@ module.exports = {
     'no-trailing-spaces': 'error',
     'no-unused-vars': ['error', { ignoreRestSiblings: true }],
     'no-warning-comments': 'off',
-    'object-curly-newline': ['error', {
-      ObjectExpression: { multiline: true, consistent: true },
-      ObjectPattern: { multiline: true, consistent: true },
-      ImportDeclaration: 'never',
-      ExportDeclaration: { multiline: true, consistent: true, minProperties: 2 }
-    }],
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: { multiline: true, consistent: true },
+        ObjectPattern: { multiline: true, consistent: true },
+        ImportDeclaration: 'never',
+        ExportDeclaration: { multiline: true, consistent: true, minProperties: 2 },
+      },
+    ],
     'object-curly-spacing': ['error', 'always'],
     'object-property-newline': 'off',
     'one-var': ['error', { uninitialized: 'always', initialized: 'never' }],
@@ -108,7 +117,7 @@ module.exports = {
       'error',
       { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
       { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
-      { blankLine: 'always', prev: '*', next: 'return' }
+      { blankLine: 'always', prev: '*', next: 'return' },
     ],
     'prefer-named-capture-group': 'error',
     'quote-props': ['error', 'as-needed'],
@@ -137,17 +146,14 @@ module.exports = {
     'import/no-default-export': 'off',
     'import/no-duplicates': 'error',
     'import/no-dynamic-require': 'error',
-    'import/no-extraneous-dependencies': ['error', {
-      devDependencies: [
-        '**/*.test.js',
-        'test/**/*.js',
-        '**/*.story.js',
-        '**/*.story.data.js',
-        'storybook/**/*.js'
-      ],
-      optionalDependencies: true,
-      peerDependencies: false
-    }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.test.js', 'test/**/*.js', '**/*.story.js', '**/*.story.data.js', 'storybook/**/*.js'],
+        optionalDependencies: true,
+        peerDependencies: false,
+      },
+    ],
     'import/no-internal-modules': 'off',
     'import/no-mutable-exports': 'error',
     'import/no-named-as-default': 'off',
@@ -158,10 +164,17 @@ module.exports = {
     'import/no-unassigned-import': ['error', { allow: ['**/*.scss'] }],
     'import/no-unresolved': 'error',
     'import/no-webpack-loader-syntax': 'error',
-    'import/order': ['error', {
-      groups: [['builtin', 'external'], ['internal', 'parent'], ['sibling', 'index']],
-      'newlines-between': 'always'
-    }],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          ['builtin', 'external'],
+          ['internal', 'parent'],
+          ['sibling', 'index'],
+        ],
+        'newlines-between': 'always',
+      },
+    ],
     'import/prefer-default-export': 'off',
     'import/unambiguous': 'error',
 
@@ -176,17 +189,23 @@ module.exports = {
     'react/function-component-definition': 'off',
     'react/forbid-prop-types': 'off',
     'react/forbid-foreign-prop-types': 'off',
-    'react/forbid-component-props': ['error', {
-      forbid: [
-        { propName: 'className', allowedFor: ['Link', 'Component', 'Element', 'Text'] },
-        { propName: 'style', allowedFor: ['Draggable', 'Element', 'Component'] }
-      ]
-    }],
+    'react/forbid-component-props': [
+      'error',
+      {
+        forbid: [
+          { propName: 'className', allowedFor: ['Link', 'Component', 'Element', 'Text'] },
+          { propName: 'style', allowedFor: ['Draggable', 'Element', 'Component'] },
+        ],
+      },
+    ],
     'react/jsx-child-element-spacing': 'off',
-    'react/jsx-curly-newline': ['error', {
-      multiline: 'consistent',
-      singleline: 'forbid'
-    }],
+    'react/jsx-curly-newline': [
+      'error',
+      {
+        multiline: 'consistent',
+        singleline: 'forbid',
+      },
+    ],
     'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
     'react/jsx-fragments': ['error', 'element'],
     'react/jsx-handler-names': 'off',
@@ -199,12 +218,15 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-sort-props': 'off',
-    'react/jsx-tag-spacing': ['error', {
-      closingSlash: 'never',
-      afterOpening: 'never',
-      beforeClosing: 'never',
-      beforeSelfClosing: 'never'
-    }],
+    'react/jsx-tag-spacing': [
+      'error',
+      {
+        closingSlash: 'never',
+        afterOpening: 'never',
+        beforeClosing: 'never',
+        beforeSelfClosing: 'never',
+      },
+    ],
     'react/no-did-mount-set-state': 'off',
     'react/no-did-update-set-state': 'off',
     'react/no-set-state': 'off',
@@ -245,11 +267,18 @@ module.exports = {
     'css-modules/no-undef-class': 'error',
 
     // https://github.com/amilajack/eslint-plugin-compat
-    'compat/compat': 'off'
+    'compat/compat': 'off',
   },
   overrides: [
     {
-      files: ['**/webpack.config.js', '**/babel.config.js', 'config/**/*.js', 'scripts/**/*.js', '.eslintrc.js', './server/**/*.js'],
+      files: [
+        '**/webpack.config.js',
+        '**/babel.config.js',
+        'config/**/*.js',
+        'scripts/**/*.js',
+        '.eslintrc.js',
+        './server/**/*.js',
+      ],
       rules: {
         camelcase: 'off',
         'no-sync': 'off',
@@ -258,27 +287,27 @@ module.exports = {
         'import/no-nodejs-modules': 'off',
         'import/no-extraneous-dependencies': 'off',
         'import/unambiguous': 'off',
-        '@typescript-eslint/no-var-requires': 'off'
-      }
+        '@typescript-eslint/no-var-requires': 'off',
+      },
     },
     {
       files: ['**/webpack.config.js', '**/babel.config.js'],
       rules: {
         'filenames/match-exported': 'off',
-        'filenames/match-regex': 'off'
-      }
+        'filenames/match-regex': 'off',
+      },
     },
     {
       files: ['src/store/reducers/*'],
       rules: {
-        '@typescript-eslint/explicit-module-boundary-types': 'off'
-      }
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+      },
     },
     {
       files: ['src/store/sagas/*'],
       rules: {
-        'func-style': 'off'
-      }
-    }
-  ]
+        'func-style': 'off',
+      },
+    },
+  ],
 }
