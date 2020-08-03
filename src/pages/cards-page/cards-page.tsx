@@ -32,12 +32,11 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
   const handleDrop = useCallback((event: SyntheticEvent, id: string) => {
     const cardIsInCurrentColumn = cards[id].includes((card: NormalizedCardInterface) => card.id === dragging)
 
-    if (!cardIsInCurrentColumn && dragging >= 0) {
-      console.log('running action')
+    if (!cardIsInCurrentColumn && dragging !== undefined) { // eslint-disable-line no-undefined
       actions.changeCardStatus(dragging, id)
     }
 
-    // actions.updatePage('cards', { dragging: null })
+    actions.updatePage('cards', { dragging: null })
   }, [dragging, cards, actions])
 
   const handleDragStart = useCallback((event: SyntheticEvent, id: string) => {
