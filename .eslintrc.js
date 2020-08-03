@@ -65,8 +65,6 @@ module.exports = {
     // http://eslint.org/docs/rules/
     'array-bracket-newline': ['error', 'consistent'],
     'array-element-newline': 'off',
-    'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
-    'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
     'class-methods-use-this': 'off',
     'consistent-return': 'off',
     'capitalized-comments': 'off',

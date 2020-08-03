@@ -1,7 +1,9 @@
-import React, { useCallback, SyntheticEvent } from 'react'
+import React, { useCallback, useMemo } from 'react'
+import classcat from 'classcat'
+
+import { NormalizedCardInterface } from '../../store/types'
 
 import './card.scss'
-import { NormalizedCardInterface } from '../../store/types'
 
 const intlDate = new Intl.DateTimeFormat('en', {
   timeStyle: 'medium',
@@ -11,8 +13,9 @@ const intlDate = new Intl.DateTimeFormat('en', {
 interface Props extends NormalizedCardInterface {
   id: number
   className?: string
-  onDragStart?: (event: SyntheticEvent, id: number) => void
-  onDragEnd?: (event: SyntheticEvent, id: number) => void
+  onDragStart?: (event: React.DragEvent, id: number) => void
+  onDragEnd?: (event: React.DragEvent, id: number) => void
+  dragging: boolean
 }
 
 const Card: React.FC<Props> = ({
@@ -23,23 +26,26 @@ const Card: React.FC<Props> = ({
   patientName,
   createdDate,
   arrhythmias,
+  dragging,
 }: Props) => {
   const handleDragStart = useCallback(
-    (event: SyntheticEvent) => {
+    (event: React.DragEvent) => {
       onDragStart?.(event, id)
     },
     [onDragStart, id]
   )
 
   const handleDragEnd = useCallback(
-    (event: SyntheticEvent) => {
+    (event: React.DragEvent) => {
       onDragEnd?.(event, id)
     },
-    [onDragStart, id]
+    [onDragEnd, id]
   )
 
+  const classes = useMemo(() => classcat(['card']), [])
+
   return (
-    <li styleName="card" draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} className={className}>
+    <li styleName={classes} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} className={className}>
       <h4>{patientName}</h4>
       <p>{intlDate.format(new Date(createdDate))}</p>
     </li>

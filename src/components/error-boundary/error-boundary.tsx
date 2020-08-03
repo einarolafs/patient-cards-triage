@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */
-import React, { ReactChildren, ReactChild, SyntheticEvent } from 'react'
+import React, { ReactChildren, ReactChild } from 'react'
 
 import './error-boundary.scss'
 
@@ -29,13 +29,13 @@ class ErrorBoundary extends React.Component {
   state: ErrorBoundaryState
   props: ErrorBoundaryProps
 
-  handleReload = (event: SyntheticEvent): void => {
+  handleReload = (event: React.DragEvent): void => {
     event.preventDefault()
 
     window.location.reload()
   }
 
-  handleShowError = (event: SyntheticEvent): void => {
+  handleShowError = (event: React.DragEvent): void => {
     const { showError } = this.state
 
     event.preventDefault()

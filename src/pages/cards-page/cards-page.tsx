@@ -1,4 +1,4 @@
-import React, { useCallback, SyntheticEvent, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import { Cards } from '../../components'
 import { NormalizedCardInterface, CardStatus } from '../../store/types'
@@ -30,7 +30,7 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
   // console.log(cards)
 
   const handleDrop = useCallback(
-    (event: SyntheticEvent, id: string) => {
+    (event: React.DragEvent, id: string) => {
       const cardIsInCurrentColumn = cards[id].includes((card: NormalizedCardInterface) => card.id === dragging)
 
       if (!cardIsInCurrentColumn && dragging !== undefined) {
@@ -43,7 +43,7 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
     [dragging, cards, actions]
   )
 
-  const handleDragStart = useCallback((event: SyntheticEvent, id: string) => {
+  const handleDragStart = useCallback((event: React.DragEvent, id: string) => {
     actions.updatePage('cards', { dragging: id })
     // console.log({ event, id })
   }, [])
@@ -53,7 +53,7 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
       {columns.map((column) => (
         <Cards.Column key={column} id={column} onDrop={handleDrop} styleName={column}>
           {cards[column].map((card: NormalizedCardInterface) => (
-            <Cards.Card key={card.id} onDragStart={handleDragStart} {...card} />
+            <Cards.Card key={card.id} dragging={card.id === dragging} onDragStart={handleDragStart} {...card} />
           ))}
         </Cards.Column>
       ))}

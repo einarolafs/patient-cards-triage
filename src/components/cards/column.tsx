@@ -1,4 +1,4 @@
-import React, { useCallback, SyntheticEvent, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import classcat from 'classcat'
 
 import './column.scss'
@@ -8,14 +8,14 @@ type Props = {
   children: React.ReactChildren | React.ReactChild
   className?: string
   styleName?: string
-  onDrop?: (event: SyntheticEvent, id: string) => void
+  onDrop?: (event: React.DragEvent, id: string) => void
 }
 
 const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => {
   const [dragOver, setDragEnter] = useState(false)
 
   const handleDrop = useCallback(
-    (event: SyntheticEvent) => {
+    (event: React.DragEvent) => {
       event.preventDefault()
       // ('drop', id)
       onDrop?.(event, id)
@@ -23,7 +23,7 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => 
     [onDrop, id]
   )
 
-  const handleDragEnter = useCallback((event: SyntheticEvent) => {
+  const handleDragEnter = useCallback((event: React.DragEvent) => {
     event.preventDefault()
     // console.log('on drag enter', id)
 
