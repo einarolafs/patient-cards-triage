@@ -21,8 +21,6 @@ const cards = (state = initial, action: Action) => {
     case types.ADD_CARDS:
       return [...state, ...action.payload]
     case types.UPDATE_CARD_STATUS:
-      console.log('UPDATE CARD STATUS', updateCardStatus(state, action.payload))
-
       return updateCardStatus(state, action.payload)
     case types.DATA_FETCH_FAILED:
       return { ...action.payload }

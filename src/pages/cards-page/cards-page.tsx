@@ -5,7 +5,7 @@ import { NormalizedCardInterface, CardStatus } from '../../store/types'
 
 import './cards-page.scss'
 
-type Props = {
+type CardsPageProps = {
   cards: {
     pending: NormalizedCardInterface[]
     rejected: NormalizedCardInterface[]
@@ -18,15 +18,23 @@ type Props = {
     changeCardStatus: (cardId: number, status: string) => void
   }
   dragging?: number
+  filters: { name?: string; arrhythmias?: string }
 }
 
 const columns = Object.values(CardStatus)
 
-const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
+const CardsPage: React.SFC<CardsPageProps> = ({ actions, cards, dragging, filters = {} }: CardsPageProps) => {
   useEffect(() => {
     actions.addPage('cards', { dragging: null })
     actions.getCards()
   }, [])
+
+  const updatePage = useCallback(
+    (payload: object) => {
+      actions.updatePage('cards', { dragging, filters, ...payload })
+    },
+    [actions, dragging, filters]
+  )
 
   const handleDrop = useCallback(
     (event: React.DragEvent, id: string) => {
@@ -37,22 +45,31 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
         actions.changeCardStatus(dragging, id)
       }
 
-      actions.updatePage('cards', { dragging: null })
+      updatePage({ dragging: null })
     },
-    [dragging, cards, actions]
+    [dragging, cards, actions, updatePage]
   )
 
-  const handleDragStart = useCallback((event: React.DragEvent, id: string) => {
-    actions.updatePage('cards', { dragging: id })
-  }, [])
+  const handleDragStart = useCallback((event: React.DragEvent, id: string) => updatePage({ dragging: id }), [
+    updatePage,
+  ])
 
-  const handleFiltering = useCallback((event: { target: HTMLInputElement }) => {
-    console.log(event.target.value)
-  }, [])
+  const handleFilteringByName = useCallback(
+    (event: { target: HTMLInputElement }) => updatePage({ filters: { name: event.target.value.toLowerCase() } }),
+    [updatePage]
+  )
+
+  const handleFilteringByArrhythmias = useCallback(
+    (event: { target: HTMLInputElement }) => updatePage({ filters: { arrhythmias: event.target.value.toLowerCase() } }),
+    [updatePage]
+  )
 
   return (
     <div styleName="cards-view">
-      <input styleName="filter" type="text" placeholder="filter content..." onChange={handleFiltering} />
+      <div styleName="filters">
+        <input type="text" placeholder="Filter by name" onChange={handleFilteringByName} />
+        <input type="text" placeholder="Filter by arrhythmias" onChange={handleFilteringByArrhythmias} />
+      </div>
       {columns.map((column) => (
         <Cards.Column key={column} id={column} onDrop={handleDrop} styleName={column} title={column.toUpperCase()}>
           {cards[column].map((card: NormalizedCardInterface) => (
@@ -64,4 +81,5 @@ const CardsPage: React.FC<Props> = ({ actions, cards, dragging }: Props) => {
   )
 }
 
+export { CardsPageProps }
 export default CardsPage

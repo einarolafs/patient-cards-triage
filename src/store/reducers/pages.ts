@@ -1,3 +1,5 @@
+import merge from 'deepmerge'
+
 import * as types from '../types'
 
 const initial = {}
@@ -12,7 +14,7 @@ type Action = {
   payload: Payload
 }
 
-const updatePageContent = (pageState: Payload, payload: Payload) => ({ ...pageState, ...payload })
+const updatePageContent = (pageState: Payload, payload: Payload) => merge(pageState, payload)
 
 const pages = (state = initial, action: Action) => {
   switch (action.type) {

@@ -9,10 +9,15 @@ import { cardsByStatus } from '../../selectors'
 
 import CardsPage from './cards-page'
 
-const mapStateToProps = (state: State) => ({
-  cards: cardsByStatus(state),
-  dragging: state.pages.cards?.dragging,
-})
+const mapStateToProps = (state: State) => {
+  const { filters } = state.pages?.cards ?? {}
+
+  return {
+    cards: cardsByStatus(state, { filters }),
+    dragging: state.pages.cards?.dragging,
+    filters,
+  }
+}
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: bindActionCreators({ getCards, addPage, updatePage, changeCardStatus }, dispatch),
