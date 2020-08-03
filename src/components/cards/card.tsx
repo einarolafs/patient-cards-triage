@@ -11,16 +11,21 @@ const intlDate = new Intl.DateTimeFormat('en', {
 interface Props extends NormalizedCardInterface {
   id: number,
   className?: string,
-  onDragStart?: (event: SyntheticEvent, id: string) => void
+  onDragStart?: (event: SyntheticEvent, id: number) => void,
+  onDragEnd?: (event: SyntheticEvent, id: number) => void,
 }
 
-const Card: React.FC<Props> = ({ className, onDragStart, id, patientName, createdDate, arrhythmias }: Props) => {
+const Card: React.FC<Props> = ({ className, onDragStart, onDragEnd, id, patientName, createdDate, arrhythmias }: Props) => {
   const handleDragStart = useCallback((event: SyntheticEvent) => {
     onDragStart?.(event, id)
   }, [onDragStart, id])
 
+  const handleDragEnd = useCallback((event: SyntheticEvent) => {
+    onDragEnd?.(event, id)
+  }, [onDragStart, id])
+
   return (
-    <li styleName="card" draggable onDragStart={handleDragStart} className={className}>
+    <li styleName="card" draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} className={className}>
       <h4>{patientName}</h4>
       <p>{intlDate.format(new Date(createdDate))}</p>
     </li>

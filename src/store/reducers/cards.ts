@@ -4,15 +4,27 @@ const initial: types.NormalizedCardInterface[] = []
 
 type Action = {
   type: string,
-  data: types.NormalizedCardInterface[]
+  payload: types.NormalizedCardInterface[]
 }
+
+const updateCardStatus = (cards, payload) => cards.map((card) => {
+  if (card.id === payload.id) {
+    return { ...card, status: payload.status }
+  }
+
+  return card
+})
 
 const cards = (state = initial, action: Action) => {
   switch (action.type) {
     case types.ADD_CARDS:
-      return [...state, ...action.data]
+      return [...state, ...action.payload]
+    case types.UPDATE_CARD_STATUS:
+      console.log('UPDATE CARD STATUS', updateCardStatus(state, action.payload))
+
+      return updateCardStatus(state, action.payload)
     case types.DATA_FETCH_FAILED:
-      return { ...action.data }
+      return { ...action.payload }
     default:
       return state
   }

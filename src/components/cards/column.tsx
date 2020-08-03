@@ -16,7 +16,7 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => 
 
   const handleDrop = useCallback((event: SyntheticEvent) => {
     event.preventDefault()
-    // console.log('drop', id)
+    // ('drop', id)
     onDrop?.(event, id)
   }, [onDrop, id])
 
@@ -29,14 +29,20 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop }: Props) => 
 
   const handleDragLeave = useCallback((event) => {
     event.preventDefault()
-    console.log('on drag leave', id, event.dataTransfer.items.length)
+    // console.log('on drag leave', id, event.dataTransfer.items.length)
     setDragEnter(true)
+  }, [])
+
+  const handleDragOver = useCallback((event) => {
+    event.preventDefault()
+
+    return false
   }, [])
 
   const classes = useMemo(() => classcat(['container', { 'drag-over': dragOver }]), [dragOver])
 
   return (
-    <ul styleName={classes} onDrop={handleDrop} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} className={className} id={id}>{children}</ul>
+    <ul styleName={classes} onDrop={handleDrop} onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragLeave={handleDragLeave} className={className} id={id}>{children}</ul>
   )
 }
 
