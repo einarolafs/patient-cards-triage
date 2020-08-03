@@ -24,7 +24,7 @@ type CardsPageProps = {
 }
 
 type UpdatePagePayloadType = {
-  dragging?: CardsPageProps['dragging']
+  dragging?: CardsPageProps['dragging'] | null
   filters?: CardsPageProps['filters']
 }
 
