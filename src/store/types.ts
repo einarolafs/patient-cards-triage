@@ -6,6 +6,7 @@ const FETCH_CARDS_REQUESTED = 'FETCH_CARDS_REQUESTED'
 const ADD_PAGE = 'ADD_PAGE'
 const UPDATE_PAGE = 'UPDATE_PAGE'
 const UPDATE_CARD_STATUS = 'UPDATE_CARD_STATUS'
+const ADD_ARRHYTHMIAS = 'ADD_ARRHYTHMIAS'
 
 type ReduxDispatch = typeof store.dispatch
 
@@ -34,6 +35,7 @@ interface NormalizedCardInterface {
 
 interface State {
   cards: NormalizedCardInterface[]
+  arrhythmias: string[]
   pages: {
     [key: string]: Record<string, any>
   }
@@ -46,6 +48,7 @@ export {
   FETCH_CARDS_REQUESTED,
   UPDATE_PAGE,
   UPDATE_CARD_STATUS,
+  ADD_ARRHYTHMIAS,
   ReduxDispatch,
   CardInterface,
   NormalizedCardInterface,

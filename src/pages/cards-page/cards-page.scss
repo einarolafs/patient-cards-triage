@@ -9,12 +9,16 @@
   justify-content: space-between;
   grid-gap: 40px;
   grid-template-areas:
-    "header . ."
+    "header header header"
     "pending rejected done";
 }
 
 .filters {
   grid-area: header;
+  grid-column-end: 4;
+  display: flex;
+  line-height: 2em;
+  justify-content: flex-end;
 }
 
 .pending {

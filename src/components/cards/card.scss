@@ -3,12 +3,25 @@
 .card {
   display: block;
   min-height: 100px;
-  background: $platinum;
-  padding: 20px 30px 10px 30px;
+  background: $cultured;
+  padding: 10px 20px;
   margin: 20px 30px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   cursor: pointer;
+  border-top: 20px solid $gray;
+}
+
+.pending {
+  border-color: $yellow;
+}
+
+.rejected {
+  border-color: $orange;
+}
+
+.done {
+  border-color: $green;
 }
 
 .name {
@@ -17,12 +30,11 @@
 }
 
 .arrhythmias h5 {
-  margin: 0;
-  margin-bottom: 5px;
+  margin: 5px 0;
 }
 
 .arrhythmias ul {
-  padding: 0;
+  padding: 10px 0;
   list-style: none;
   display: flex;
 }
@@ -31,6 +43,10 @@
   margin: 0;
   font-size: 0.8em;
   margin-right: 0.5em;
+  padding: 5px;
+  background-color: $platinum;
+  border-radius: 2px;
+  white-space: nowrap;
 }
 
 .date {

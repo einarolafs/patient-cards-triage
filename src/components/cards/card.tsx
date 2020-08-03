@@ -16,6 +16,7 @@ interface Props extends NormalizedCardInterface {
   onDragStart?: (event: React.DragEvent, id: number) => void
   onDragEnd?: (event: React.DragEvent, id: number) => void
   dragging: boolean
+  status: string
 }
 
 const Card: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const Card: React.FC<Props> = ({
   createdDate,
   arrhythmias,
   dragging,
+  status,
 }: Props) => {
   const handleDragStart = useCallback(
     (event: React.DragEvent) => {
@@ -42,7 +44,7 @@ const Card: React.FC<Props> = ({
     [onDragEnd, id]
   )
 
-  const classes = useMemo(() => classcat(['card']), [])
+  const classes = useMemo(() => classcat(['card', { [status]: status }]), [status])
 
   return (
     <li styleName={classes} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} className={className}>

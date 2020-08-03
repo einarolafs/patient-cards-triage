@@ -11,15 +11,16 @@ const selectFilters = (state: State, props: CardsPageProps) => {
 }
 
 const cardsByStatus = createSelector(selectCards, selectFilters, (cards, filters) => {
-  console.log(filters?.arrhythmias)
+  // console.log(filters?.arrhythmias)
   const filteredCards = cards
     .filter(({ patientName }) => patientName.toLowerCase().includes(filters?.name ?? ''))
-    .filter(({ arrhythmias }) =>
-      arrhythmias
-        .toString()
-        .toLowerCase()
-        .includes(filters?.arrhythmias ?? '')
-    )
+    .filter(({ arrhythmias }) => {
+      if (filters?.arrhythmias && filters.arrhythmias.length) {
+        return arrhythmias.some((arrhythmia) => filters.arrhythmias.includes(arrhythmia))
+      }
+
+      return true
+    })
 
   const pending = filteredCards.filter(({ status }) => status === CardStatus.PENDING)
   const rejected = filteredCards.filter(({ status }) => status === CardStatus.REJECTED)

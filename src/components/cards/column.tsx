@@ -47,7 +47,7 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop, title }: Pro
   const classes = useMemo(() => classcat(['container', { 'drag-over': dragOver }]), [dragOver])
 
   return (
-    <ul
+    <div
       styleName={classes}
       onDrop={handleDrop}
       onDragEnter={handleDragEnter}
@@ -57,8 +57,8 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop, title }: Pro
       id={id}
     >
       <h2 styleName="title">{title}</h2>
-      {children}
-    </ul>
+      <ul>{children}</ul>
+    </div>
   )
 }
 

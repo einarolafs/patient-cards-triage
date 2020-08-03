@@ -15,6 +15,7 @@ const mapStateToProps = (state: State) => {
   return {
     cards: cardsByStatus(state, { filters }),
     dragging: state.pages.cards?.dragging,
+    arrhythmias: state.arrhythmias,
     filters,
   }
 }
