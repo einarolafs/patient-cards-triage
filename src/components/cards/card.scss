@@ -1,4 +1,4 @@
-@import "../../color.scss";
+@import '../../color.scss';
 
 .card {
   display: block;
@@ -13,11 +13,11 @@
 }
 
 .pending {
-  border-color: $yellow;
+  border-color: $gray;
 }
 
 .rejected {
-  border-color: $orange;
+  border-color: $red;
 }
 
 .done {
@@ -37,14 +37,15 @@
   padding: 10px 0;
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .arrhythmias li {
-  margin: 0;
+  margin: 5px 0;
   font-size: 0.8em;
   margin-right: 0.5em;
-  padding: 5px;
-  background-color: $platinum;
+  padding: 5px 8px;
+  background-color: #e0e1ddff;
   border-radius: 2px;
   white-space: nowrap;
 }

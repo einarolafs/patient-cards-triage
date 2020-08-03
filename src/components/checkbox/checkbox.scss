@@ -1,0 +1,46 @@
+/* stylelint-disable a11y/media-prefers-reduced-motion */
+@import '../../color.scss';
+
+.checkbox {
+  display: flex;
+  align-items: stretch;
+}
+
+.checkbox label {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 2px;
+  white-space: nowrap;
+  margin: 0 5px;
+  padding: 0 12px;
+  user-select: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.checkbox label::before {
+  display: inline-block;
+  text-rendering: auto;
+  font-weight: 900;
+  content: "\002B";
+  transition: transform 0.3s ease-in-out;
+  padding-right: 5px;
+}
+
+.checkbox input[type="checkbox"]:checked + label::before {
+  content: "\2713";
+  transform: rotate(-360deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.checkbox input[type="checkbox"]:checked + label {
+  background-color: $shadow-blue;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.checkbox input[type="checkbox"] {
+  display: none;
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './checkbox.scss'
+
 type CheckboxProps = {
   name: string
   title: string
@@ -7,10 +9,10 @@ type CheckboxProps = {
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({ name, onChange, title }: CheckboxProps) => (
-  <label htmlFor={name}>
-    <input type="checkbox" name={name} onChange={onChange} />
-    {title}
-  </label>
+  <div styleName="checkbox">
+    <input type="checkbox" name={name} id={name} onChange={onChange} />
+    <label htmlFor={name}>{title}</label>
+  </div>
 )
 
 export default Checkbox

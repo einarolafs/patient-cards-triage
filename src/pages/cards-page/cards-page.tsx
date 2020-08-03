@@ -45,7 +45,7 @@ const CardsPage: React.SFC<CardsPageProps> = ({
   const updatePage = useCallback(
     (payload: UpdatePagePayloadType) => {
       if (payload.filters) {
-        const name = payload.filters.name || filters.name
+        const { name } = payload.filters
         const newArrhythmias = payload.filters.arrhythmias || filters.arrhythmias
 
         return actions.updatePage('cards', { filters: { name, arrhythmias: newArrhythmias } })
@@ -93,8 +93,6 @@ const CardsPage: React.SFC<CardsPageProps> = ({
       } else {
         filter.delete(name)
       }
-
-      console.log(filter)
 
       updatePage({ filters: { arrhythmias: [...filter] } })
     },

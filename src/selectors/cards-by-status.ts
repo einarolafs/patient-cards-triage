@@ -16,7 +16,7 @@ const cardsByStatus = createSelector(selectCards, selectFilters, (cards, filters
     .filter(({ patientName }) => patientName.toLowerCase().includes(filters?.name ?? ''))
     .filter(({ arrhythmias }) => {
       if (filters?.arrhythmias && filters.arrhythmias.length) {
-        return arrhythmias.some((arrhythmia) => filters.arrhythmias.includes(arrhythmia))
+        return filters.arrhythmias.every((arrhythmia: string) => arrhythmias.includes(arrhythmia))
       }
 
       return true
