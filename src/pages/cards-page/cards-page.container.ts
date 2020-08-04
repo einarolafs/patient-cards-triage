@@ -11,16 +11,13 @@ import CardsPage from './cards-page'
 
 const mapStateToProps = (state: State) => {
   const { filters, dragging } = state.pages?.cards ?? {}
-  const cards = cardsByKeyValue(state)
-  const draggingStatus = cards[dragging]?.status
 
   return {
     cardsByStatus: cardsByStatus(state, { filters }),
-    cards,
+    cards: cardsByKeyValue(state),
     dragging,
     arrhythmias: state.arrhythmias,
     filters,
-    draggingStatus,
   }
 }
 

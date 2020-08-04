@@ -1,6 +1,11 @@
 import { UPDATE_CARD_STATUS } from '../types'
 
-const changeCardStatus = (id: string, status: string) => ({
+type ChangeCardStatusProps = {
+  id: string
+  status: string
+}
+
+const changeCardStatus = ({ id, status }: ChangeCardStatusProps) => ({
   type: UPDATE_CARD_STATUS,
   payload: {
     id,

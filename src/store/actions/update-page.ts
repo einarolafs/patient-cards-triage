@@ -1,6 +1,11 @@
 import { UPDATE_PAGE } from '../types'
 
-const updatePage = (id: string, payload: Record<string, unknown>) => ({
+type UpdatePageProps = {
+  id: string
+  payload: Record<string, unknown>
+}
+
+const updatePage = ({ id, payload }: UpdatePageProps) => ({
   type: UPDATE_PAGE,
   id,
   payload,

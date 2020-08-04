@@ -98,7 +98,7 @@ module.exports = {
     'no-trailing-spaces': 'error',
     'no-unused-vars': ['error', { ignoreRestSiblings: true }],
     'no-warning-comments': 'off',
-    'object-curly-newline': [
+    /* 'object-curly-newline': [
       'error',
       {
         ObjectExpression: { multiline: true, consistent: true },
@@ -106,7 +106,7 @@ module.exports = {
         ImportDeclaration: 'never',
         ExportDeclaration: { multiline: true, consistent: true, minProperties: 2 },
       },
-    ],
+    ], */
     'object-curly-spacing': ['error', 'always'],
     'object-property-newline': 'off',
     'one-var': ['error', { uninitialized: 'always', initialized: 'never' }],
@@ -247,7 +247,7 @@ module.exports = {
     'promise/prefer-await-to-callbacks': 'error',
 
     // https://github.com/selaux/eslint-plugin-filenames#rules
-    'filenames/match-regex': ['error', '^[a-z0-9-]+(.story(.data)?|.test|.i18n|.provider|.container)?$', true],
+    'filenames/match-regex': ['error', '^[a-z0-9-]+(.story(.data)?|.test|.i18n|.provider|.container|.d)?$', true],
     'filenames/match-exported': ['error', 'kebab'],
     'filenames/no-index': 'off',
 

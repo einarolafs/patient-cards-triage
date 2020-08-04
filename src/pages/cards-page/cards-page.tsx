@@ -3,32 +3,9 @@ import React, { useCallback, useEffect } from 'react'
 import { Cards, Checkbox } from '../../components'
 import { NormalizedCardInterface, CardStatus } from '../../store/types'
 
+import { CardsPageProps, UpdatePagePayloadType } from './types'
+
 import './cards-page.scss'
-
-type CardsPageProps = {
-  cards: NormalizedCardInterface[]
-  cardsByStatus: {
-    pending: NormalizedCardInterface[]
-    rejected: NormalizedCardInterface[]
-    done: NormalizedCardInterface[]
-  }
-  actions: {
-    getCards: () => void
-    addPage: (id: string, payload: Record<string, unknown>) => void
-    updatePage: (pageId: string, payload: Record<string, any>) => void
-    changeCardStatus: (cardId: number, status: string) => void
-  }
-  dragging?: number
-  status: string
-  filters: { name?: string; arrhythmias?: string[] }
-  arrhythmias: string[]
-  draggingStatus: string
-}
-
-type UpdatePagePayloadType = {
-  dragging?: CardsPageProps['dragging'] | null
-  filters?: CardsPageProps['filters']
-}
 
 const columns = Object.values(CardStatus)
 
@@ -37,43 +14,55 @@ const CardsPage: React.SFC<CardsPageProps> = ({
   cards,
   cardsByStatus,
   dragging,
-  draggingStatus,
   filters = {},
   arrhythmias,
 }: CardsPageProps) => {
   useEffect(() => {
-    actions.addPage('cards', { dragging: null })
+    actions.addPage({ id: 'cards', payload: { dragging: null } })
     actions.getCards()
   }, [])
 
   const updatePage = useCallback(
-    (payload: UpdatePagePayloadType) => {
-      if (payload.filters) {
-        const { name } = payload.filters
-        const newArrhythmias = payload.filters.arrhythmias || filters.arrhythmias
+    (data: UpdatePagePayloadType) => {
+      const id = 'cards'
 
-        return actions.updatePage('cards', { filters: { name, arrhythmias: newArrhythmias } })
+      if (data.filters) {
+        const { name } = data.filters
+        const newArrhythmias = data.filters.arrhythmias || filters.arrhythmias
+
+        const payload = { filters: { name, arrhythmias: newArrhythmias } }
+
+        return actions.updatePage({ id, payload })
       }
-      actions.updatePage('cards', { dragging, filters, ...payload })
+      actions.updatePage({ id, payload: { dragging, filters, ...data } })
     },
     [actions, dragging, filters]
   )
 
+  const canDragToColumn = useCallback(
+    (status: string) => {
+      if (typeof dragging === 'number') {
+        return (
+          (cards[dragging].status === CardStatus.PENDING && status === CardStatus.DONE) ||
+          (cards[dragging].status === CardStatus.REJECTED && status === CardStatus.DONE) ||
+          (cards[dragging].status === CardStatus.DONE && status === CardStatus.REJECTED)
+        )
+      }
+    },
+    [dragging, cards]
+  )
+
   const handleDrop = useCallback(
     (event: React.DragEvent, status: string) => {
-      if (typeof dragging === 'number') {
-        if (cards[dragging].status === CardStatus.PENDING && status === CardStatus.DONE) {
-          actions.changeCardStatus(dragging, status)
-        } else if (cards[dragging].status === CardStatus.REJECTED && status === CardStatus.DONE) {
-          actions.changeCardStatus(dragging, status)
-        } else if (cards[dragging].status === CardStatus.DONE && status === CardStatus.REJECTED) {
-          actions.changeCardStatus(dragging, status)
-        }
+      const canDropToColumn = canDragToColumn(status)
+
+      if (canDropToColumn && typeof dragging === 'number') {
+        actions.changeCardStatus({ id: dragging, status })
       }
 
       updatePage({ dragging: null })
     },
-    [dragging, cards, actions, updatePage]
+    [dragging, actions, updatePage, canDragToColumn]
   )
 
   const handleDragStart = useCallback((event: React.DragEvent, id: number) => updatePage({ dragging: id }), [
@@ -95,31 +84,14 @@ const CardsPage: React.SFC<CardsPageProps> = ({
         filters.arrhythmias.forEach((item) => filter.add(item))
       }
 
-      if (checked) {
-        filter.add(name)
-      } else {
-        filter.delete(name)
-      }
+      filter[checked ? 'add' : 'delete'](name)
 
       updatePage({ filters: { arrhythmias: [...filter] } })
     },
     [updatePage, filters]
   )
 
-  const handleDisabledColumn = useCallback(
-    (column) => {
-      if (column === CardStatus.PENDING && draggingStatus === CardStatus.REJECTED) {
-        return true
-      }
-
-      if (column === CardStatus.REJECTED && draggingStatus === CardStatus.PENDING) {
-        return true
-      }
-
-      return false
-    },
-    [draggingStatus]
-  )
+  const handleDisabledColumn = useCallback((column: string) => !canDragToColumn(column), [canDragToColumn])
 
   return (
     <div styleName="cards-view">
