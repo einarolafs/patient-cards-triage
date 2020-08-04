@@ -7,7 +7,7 @@ type Action = {
   payload: types.NormalizedCardInterface[]
 }
 
-const updateCardStatus = (cards, payload) =>
+const updateCardStatus = (cards: types.NormalizedCardInterface[], payload: types.NormalizedCardInterface[]) =>
   cards.map((card) => {
     if (card.id === payload.id) {
       return { ...card, status: payload.status }

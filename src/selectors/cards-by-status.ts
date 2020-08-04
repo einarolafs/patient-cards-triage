@@ -4,14 +4,9 @@ import { CardsPageProps } from '../pages/cards-page'
 import { State, CardStatus } from '../store/types'
 
 const selectCards = (state: State) => state.cards
-const selectFilters = (state: State, props: CardsPageProps) => {
-  // console.log({ props })
-
-  return props.filters
-}
+const selectFilters = (state: State, props: CardsPageProps) => props.filters
 
 const cardsByStatus = createSelector(selectCards, selectFilters, (cards, filters) => {
-  // console.log(filters?.arrhythmias)
   const filteredCards = cards
     .filter(({ patientName }) => patientName.toLowerCase().includes(filters?.name ?? ''))
     .filter(({ arrhythmias }) => {

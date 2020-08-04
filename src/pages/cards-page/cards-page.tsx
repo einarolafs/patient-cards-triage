@@ -6,7 +6,8 @@ import { NormalizedCardInterface, CardStatus } from '../../store/types'
 import './cards-page.scss'
 
 type CardsPageProps = {
-  cards: {
+  cards: NormalizedCardInterface[]
+  cardsByStatus: {
     pending: NormalizedCardInterface[]
     rejected: NormalizedCardInterface[]
     done: NormalizedCardInterface[]
@@ -14,13 +15,14 @@ type CardsPageProps = {
   actions: {
     getCards: () => void
     addPage: (id: string, payload: Record<string, unknown>) => void
-    updatePage: (pageId: string, status: Record<string, any>) => void
+    updatePage: (pageId: string, payload: Record<string, any>) => void
     changeCardStatus: (cardId: number, status: string) => void
   }
   dragging?: number
   status: string
   filters: { name?: string; arrhythmias?: string[] }
   arrhythmias: string[]
+  draggingStatus: string
 }
 
 type UpdatePagePayloadType = {
@@ -33,7 +35,9 @@ const columns = Object.values(CardStatus)
 const CardsPage: React.SFC<CardsPageProps> = ({
   actions,
   cards,
+  cardsByStatus,
   dragging,
+  draggingStatus,
   filters = {},
   arrhythmias,
 }: CardsPageProps) => {
@@ -56,12 +60,15 @@ const CardsPage: React.SFC<CardsPageProps> = ({
   )
 
   const handleDrop = useCallback(
-    (event: React.DragEvent, id: string) => {
-      const cardIsInCurrentColumn = cards[id].includes((card: NormalizedCardInterface) => card.id === dragging)
-
-      // eslint-disable-next-line no-undefined
-      if (!cardIsInCurrentColumn && dragging !== undefined) {
-        actions.changeCardStatus(dragging, id)
+    (event: React.DragEvent, status: string) => {
+      if (typeof dragging === 'number') {
+        if (cards[dragging].status === CardStatus.PENDING && status === CardStatus.DONE) {
+          actions.changeCardStatus(dragging, status)
+        } else if (cards[dragging].status === CardStatus.REJECTED && status === CardStatus.DONE) {
+          actions.changeCardStatus(dragging, status)
+        } else if (cards[dragging].status === CardStatus.DONE && status === CardStatus.REJECTED) {
+          actions.changeCardStatus(dragging, status)
+        }
       }
 
       updatePage({ dragging: null })
@@ -99,19 +106,41 @@ const CardsPage: React.SFC<CardsPageProps> = ({
     [updatePage, filters]
   )
 
+  const handleDisabledColumn = useCallback(
+    (column) => {
+      if (column === CardStatus.PENDING && draggingStatus === CardStatus.REJECTED) {
+        return true
+      }
+
+      if (column === CardStatus.REJECTED && draggingStatus === CardStatus.PENDING) {
+        return true
+      }
+
+      return false
+    },
+    [draggingStatus]
+  )
+
   return (
     <div styleName="cards-view">
       <div styleName="filters">
         <input type="text" placeholder="Filter by name" onChange={handleFilteringByName} />
-        <div>
+        <div styleName="arrhythmia-filter">
           {arrhythmias.map((arrhythmia) => (
             <Checkbox key={arrhythmia} title={arrhythmia} name={arrhythmia} onChange={handleFilteringByArrhythmias} />
           ))}
         </div>
       </div>
       {columns.map((column) => (
-        <Cards.Column key={column} id={column} onDrop={handleDrop} styleName={column} title={column.toUpperCase()}>
-          {cards[column].map((card: NormalizedCardInterface) => (
+        <Cards.Column
+          key={column}
+          id={column}
+          onDrop={handleDrop}
+          styleName={column}
+          disabled={handleDisabledColumn}
+          title={column.toUpperCase()}
+        >
+          {cardsByStatus[column].map((card: NormalizedCardInterface) => (
             <Cards.Card
               status={status}
               key={card.id}

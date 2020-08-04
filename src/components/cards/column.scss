@@ -1,4 +1,4 @@
-@import '../../color.scss';
+@import "../../color.scss";
 
 .container {
   display: block;
@@ -6,6 +6,23 @@
   background: $white;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+
+  &:hover,
+  &:focus {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.disabled {
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .disabled {
+    animation: none;
+    animation-iteration-count: 0;
+  }
 }
 
 .container > ul {
@@ -34,6 +51,25 @@
   margin-bottom: 20px;
 }
 
-.drag-over {
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }

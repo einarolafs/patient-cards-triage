@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState, useRef, useEffect } from 'react'
 import classcat from 'classcat'
 
 import './column.scss'
@@ -10,32 +10,44 @@ type Props = {
   styleName?: string
   onDrop?: (event: React.DragEvent, id: string) => void
   title: string
+  disabled: (column: string) => boolean
 }
 
-const Column: React.FC<Props> = ({ children, className, id, onDrop, title }: Props) => {
-  const [dragOver, setDragEnter] = useState(false)
+const Column: React.FC<Props> = ({ children, className, id, onDrop, title, disabled }: Props) => {
+  const [isDisabled, setDisabled] = useState(false)
+
+  const timeout = useRef<typeof setTimeout>(null)
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeout.current)
+    }
+  }, [])
 
   const handleDrop = useCallback(
     (event: React.DragEvent) => {
       event.preventDefault()
-      // ('drop', id)
       onDrop?.(event, id)
+
+      if (disabled(id)) {
+        setDisabled(true)
+
+        timeout.current = setTimeout(() => {
+          setDisabled(false)
+        }, 1000)
+      }
     },
-    [onDrop, id]
+    [onDrop, id, disabled]
   )
 
   const handleDragEnter = useCallback((event: React.DragEvent) => {
     event.preventDefault()
-
-    setDragEnter(true)
 
     return false
   }, [])
 
   const handleDragLeave = useCallback((event) => {
     event.preventDefault()
-    // console.log('on drag leave', id, event.dataTransfer.items.length)
-    setDragEnter(false)
   }, [])
 
   const handleDragOver = useCallback((event) => {
@@ -44,7 +56,7 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop, title }: Pro
     return false
   }, [])
 
-  const classes = useMemo(() => classcat(['container', { 'drag-over': dragOver }]), [dragOver])
+  const classes = useMemo(() => classcat(['container', { disabled: isDisabled }]), [isDisabled])
 
   return (
     <div

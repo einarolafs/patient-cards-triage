@@ -5,18 +5,22 @@ import { bindActionCreators, Dispatch } from 'redux'
 
 import { State } from '../../store/types'
 import { getCards, addPage, updatePage, changeCardStatus } from '../../store/actions'
-import { cardsByStatus } from '../../selectors'
+import { cardsByStatus, cardsByKeyValue } from '../../selectors'
 
 import CardsPage from './cards-page'
 
 const mapStateToProps = (state: State) => {
-  const { filters } = state.pages?.cards ?? {}
+  const { filters, dragging } = state.pages?.cards ?? {}
+  const cards = cardsByKeyValue(state)
+  const draggingStatus = cards[dragging]?.status
 
   return {
-    cards: cardsByStatus(state, { filters }),
-    dragging: state.pages.cards?.dragging,
+    cardsByStatus: cardsByStatus(state, { filters }),
+    cards,
+    dragging,
     arrhythmias: state.arrhythmias,
     filters,
+    draggingStatus,
   }
 }
 
