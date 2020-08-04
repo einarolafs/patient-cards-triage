@@ -9,10 +9,18 @@
   animation: spin 0.75s linear infinite;
 }
 
+/* stylelint-disable-next-line scss/media-feature-value-dollar-variable */
+@media screen and (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

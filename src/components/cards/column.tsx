@@ -3,9 +3,13 @@ import classcat from 'classcat'
 
 import './column.scss'
 
+const timeout = (func: () => void) => {
+  return (setTimeout(func, 1000) as unknown) as number
+}
+
 type Props = {
   id: string
-  children: React.ReactChildren | React.ReactChild
+  children: React.ReactChildren | React.ReactChild | JSX.Element | JSX.Element[]
   className?: string
   styleName?: string
   onDrop?: (event: React.DragEvent, id: string) => void
@@ -16,11 +20,11 @@ type Props = {
 const Column: React.FC<Props> = ({ children, className, id, onDrop, title, disabled }: Props) => {
   const [isDisabled, setDisabled] = useState(false)
 
-  const timeout = useRef<typeof setTimeout>(null)
+  const disableTimeout = useRef<number>()
 
   useEffect(() => {
     return () => {
-      clearTimeout(timeout.current)
+      clearTimeout(disableTimeout.current)
     }
   }, [])
 
@@ -32,9 +36,7 @@ const Column: React.FC<Props> = ({ children, className, id, onDrop, title, disab
       if (disabled(id)) {
         setDisabled(true)
 
-        timeout.current = setTimeout(() => {
-          setDisabled(false)
-        }, 1000)
+        disableTimeout.current = timeout(() => setDisabled(false))
       }
     },
     [onDrop, id, disabled]

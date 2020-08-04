@@ -18,6 +18,7 @@
   animation-iteration-count: 1;
 }
 
+/* stylelint-disable-next-line scss/media-feature-value-dollar-variable */
 @media screen and (prefers-reduced-motion: reduce) {
   .disabled {
     animation: none;
@@ -32,11 +33,11 @@
   margin: 0;
   overflow: auto;
 
-  & > * {
+  > * {
     margin-bottom: 10px;
   }
 
-  & > *:last-child {
+  > *:last-child {
     margin-bottom: 0;
   }
 }

@@ -9,13 +9,13 @@ import './cards-page.scss'
 
 const columns = Object.values(CardStatus)
 
-const CardsPage: React.SFC<CardsPageProps> = ({
+const CardsPage: React.FC<CardsPageProps> = ({
   actions,
   cards,
   cardsByStatus,
   dragging,
   filters = {},
-  arrhythmias,
+  ...props
 }: CardsPageProps) => {
   useEffect(() => {
     actions.addPage({ id: 'cards', payload: { dragging: null } })
@@ -28,9 +28,9 @@ const CardsPage: React.SFC<CardsPageProps> = ({
 
       if (data.filters) {
         const { name } = data.filters
-        const newArrhythmias = data.filters.arrhythmias || filters.arrhythmias
+        const arrhythmias = data.filters.arrhythmias || filters.arrhythmias
 
-        const payload = { filters: { name, arrhythmias: newArrhythmias } }
+        const payload = { filters: { name, arrhythmias } }
 
         return actions.updatePage({ id, payload })
       }
@@ -75,8 +75,8 @@ const CardsPage: React.SFC<CardsPageProps> = ({
   )
 
   const handleFilteringByArrhythmias = useCallback(
-    (event: { target: HTMLInputElement }) => {
-      const { name, checked } = event.target
+    (event: React.FormEvent<HTMLInputElement>) => {
+      const { name, checked } = event.target as HTMLInputElement
 
       const filter: Set<string> = new Set()
 
@@ -92,6 +92,8 @@ const CardsPage: React.SFC<CardsPageProps> = ({
   )
 
   const handleDisabledColumn = useCallback((column: string) => !canDragToColumn(column), [canDragToColumn])
+
+  const { arrhythmias } = props
 
   return (
     <div styleName="cards-view">
@@ -113,13 +115,7 @@ const CardsPage: React.SFC<CardsPageProps> = ({
           title={column.toUpperCase()}
         >
           {cardsByStatus[column].map((card: NormalizedCardInterface) => (
-            <Cards.Card
-              status={status}
-              key={card.id}
-              dragging={card.id === dragging}
-              onDragStart={handleDragStart}
-              {...card}
-            />
+            <Cards.Card key={card.id} dragging={card.id === dragging} onDragStart={handleDragStart} {...card} />
           ))}
         </Cards.Column>
       ))}

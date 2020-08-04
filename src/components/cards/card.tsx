@@ -10,16 +10,17 @@ const intlDate = new Intl.DateTimeFormat('en', {
   dateStyle: 'short',
 })
 
-interface Props extends NormalizedCardInterface {
+interface CardProps {
   id: number
   className?: string
   onDragStart?: (event: React.DragEvent, id: number) => void
   onDragEnd?: (event: React.DragEvent, id: number) => void
   dragging: boolean
-  status: string
 }
 
-const Card: React.FC<Props> = ({
+type ExtendedCardsProps = CardProps & NormalizedCardInterface
+
+const Card: React.FC<ExtendedCardsProps> = ({
   className,
   onDragStart,
   onDragEnd,
@@ -27,9 +28,8 @@ const Card: React.FC<Props> = ({
   patientName,
   createdDate,
   arrhythmias,
-  dragging,
   status,
-}: Props) => {
+}: ExtendedCardsProps) => {
   const handleDragStart = useCallback(
     (event: React.DragEvent) => {
       onDragStart?.(event, id)

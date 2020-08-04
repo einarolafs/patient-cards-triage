@@ -5,7 +5,7 @@ import './checkbox.scss'
 type CheckboxProps = {
   name: string
   title: string
-  onChange: (event: React.SyntheticEvent) => void
+  onChange: (event: React.FormEvent<HTMLInputElement>) => void
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({ name, onChange, title }: CheckboxProps) => (

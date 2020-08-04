@@ -29,13 +29,13 @@ class ErrorBoundary extends React.Component {
   state: ErrorBoundaryState
   props: ErrorBoundaryProps
 
-  handleReload = (event: React.DragEvent): void => {
+  handleReload = (event: React.SyntheticEvent): void => {
     event.preventDefault()
 
     window.location.reload()
   }
 
-  handleShowError = (event: React.DragEvent): void => {
+  handleShowError = (event: React.SyntheticEvent): void => {
     const { showError } = this.state
 
     event.preventDefault()

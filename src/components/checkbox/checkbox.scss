@@ -1,5 +1,5 @@
 /* stylelint-disable a11y/media-prefers-reduced-motion */
-@import '../../color.scss';
+@import "../../color.scss";
 
 .checkbox {
   display: flex;
@@ -24,23 +24,23 @@
   display: inline-block;
   text-rendering: auto;
   font-weight: 900;
-  content: '\002B';
+  content: "\002B";
   transition: transform 0.3s ease-in-out;
   padding-right: 5px;
 }
 
-.checkbox input[type='checkbox']:checked + label::before {
-  content: '\2713';
+.checkbox input[type="checkbox"]:checked + label::before {
+  content: "\2713";
   transform: rotate(-360deg);
   transition: transform 0.3s ease-in-out;
 }
 
-.checkbox input[type='checkbox']:checked + label {
+.checkbox input[type="checkbox"]:checked + label {
   background-color: $shadow-blue;
   color: #fff;
   transition: all 0.2s;
 }
 
-.checkbox input[type='checkbox'] {
+.checkbox input[type="checkbox"] {
   display: none;
 }
