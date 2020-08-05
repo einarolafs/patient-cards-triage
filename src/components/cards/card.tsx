@@ -6,6 +6,7 @@ import { NormalizedCardInterface } from '../../store/types'
 import './card.scss'
 
 const intlDate = new Intl.DateTimeFormat('en', {
+  /* @ts-ignore */
   timeStyle: 'medium',
   dateStyle: 'short',
 })

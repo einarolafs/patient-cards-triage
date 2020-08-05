@@ -1,13 +1,13 @@
-import * as types from '../types'
+import { NormalizedCardInterface, ADD_CARDS, UPDATE_CARD_STATUS, DATA_FETCH_FAILED } from '../types'
 
-const initial: types.NormalizedCardInterface[] = []
+const initial: NormalizedCardInterface[] = []
 
 type Action = {
   type: string
-  payload: types.NormalizedCardInterface[]
+  payload: NormalizedCardInterface[] | NormalizedCardInterface
 }
 
-const updateCardStatus = (cards: types.NormalizedCardInterface[], payload: types.NormalizedCardInterface[]) =>
+const updateCardStatus = (cards: NormalizedCardInterface[], payload: NormalizedCardInterface) =>
   cards.map((card) => {
     if (card.id === payload.id) {
       return { ...card, status: payload.status }
@@ -18,11 +18,17 @@ const updateCardStatus = (cards: types.NormalizedCardInterface[], payload: types
 
 const cards = (state = initial, action: Action) => {
   switch (action.type) {
-    case types.ADD_CARDS:
-      return [...state, ...action.payload]
-    case types.UPDATE_CARD_STATUS:
-      return updateCardStatus(state, action.payload)
-    case types.DATA_FETCH_FAILED:
+    case ADD_CARDS:
+      if (action.payload instanceof Array) {
+        return [...state, ...action.payload]
+      }
+      break
+    case UPDATE_CARD_STATUS:
+      if (!(action.payload instanceof Array)) {
+        return updateCardStatus(state, action.payload)
+      }
+      break
+    case DATA_FETCH_FAILED:
       return { ...action.payload }
     default:
       return state

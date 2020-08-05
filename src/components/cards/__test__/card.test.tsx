@@ -4,6 +4,7 @@ import { render, fireEvent, queryByText } from '@testing-library/react'
 import Card from '../card'
 
 const intlDate = new Intl.DateTimeFormat('en', {
+  /* @ts-ignore */
   timeStyle: 'medium',
   dateStyle: 'short',
 })
@@ -50,12 +51,12 @@ describe('App', () => {
   })
 
   test('run handleOnDragStart when onDrag is triggered', () => {
-    fireEvent.dragStart(element.querySelector('.card'), {})
+    fireEvent.dragStart(element.querySelector('.card')!, {})
     expect(spyOnDragStart).toBeCalled()
   })
 
   test('run handleOnDrag when onDrag is triggered', () => {
-    fireEvent.dragEnd(element.querySelector('.card'), {})
+    fireEvent.dragEnd(element.querySelector('.card')!, {})
     expect(spyOnDragEnd).toBeCalled()
   })
 })

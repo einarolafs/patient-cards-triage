@@ -25,4 +25,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: bindActionCreators({ getCards, addPage, updatePage, changeCardStatus }, dispatch),
 })
 
+/* @ts-ignore */
 export default connect(mapStateToProps, mapDispatchToProps)(CardsPage)

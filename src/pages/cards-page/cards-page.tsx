@@ -115,7 +115,7 @@ const CardsPage: React.FC<CardsPageProps> = ({
           title={column.toUpperCase()}
         >
           {cardsByStatus[column].map((card: NormalizedCardInterface) => (
-            <Cards.Card key={card.id} dragging={card.id === dragging} onDragStart={handleDragStart} {...card} />
+            <Cards.Card key={card.id} onDragStart={handleDragStart} {...card} />
           ))}
         </Cards.Column>
       ))}
