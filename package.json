@@ -130,6 +130,9 @@
     "lint:js": "eslint . --cache",
     "lint:scss": "stylelint --syntax scss --cache './src/**/*.scss'",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:scss -- --fix",
+    "test": "concurrently \"npm run lint\" \"npm run test:jest\"",
+    "test:jest": "jest .",
+    "test:watch": "jest . --watchAll",
     "api": "node ./server/index.js"
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, getByRole, queryByText } from '@testing-library/react'
+import { render, fireEvent, queryByText } from '@testing-library/react'
 
 import Card from '../card'
 
@@ -49,8 +49,13 @@ describe('App', () => {
     expect(element.querySelector('.date')).toHaveTextContent(date)
   })
 
-  test('render date in a localised format', () => {
-    fireEvent.click(element.querySelector('input'), {})
+  test('run handleOnDragStart when onDrag is triggered', () => {
+    fireEvent.dragStart(element.querySelector('.card'), {})
+    expect(spyOnDragStart).toBeCalled()
+  })
+
+  test('run handleOnDrag when onDrag is triggered', () => {
+    fireEvent.dragEnd(element.querySelector('.card'), {})
     expect(spyOnDragEnd).toBeCalled()
   })
 })
