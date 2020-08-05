@@ -27,8 +27,8 @@ const CardsPage: React.FC<CardsPageProps> = ({
       const id = 'cards'
 
       if (data.filters) {
-        const { name } = data.filters
-        const arrhythmias = data.filters.arrhythmias || filters.arrhythmias
+        const { name = filters.name } = data.filters
+        const { arrhythmias = filters.arrhythmias } = data.filters
 
         const payload = { filters: { name, arrhythmias } }
 

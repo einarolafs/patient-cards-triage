@@ -19,18 +19,18 @@ enum CardStatus {
 /* eslint-disable camelcase */
 interface CardInterface {
   arrhythmias: string[]
-  created_date: Date
+  created_date: string
   id: number
   patient_name: string
-  status: CardStatus
+  status: string
 }
 
 interface NormalizedCardInterface {
   arrhythmias: string[]
-  createdDate: Date
+  createdDate: string
   id: number
   patientName: string
-  status: CardStatus
+  status: string
 }
 
 interface State {

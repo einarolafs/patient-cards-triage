@@ -1,7 +1,7 @@
 import { UPDATE_CARD_STATUS } from '../types'
 
 type ChangeCardStatusProps = {
-  id: string
+  id: number
   status: string
 }
 

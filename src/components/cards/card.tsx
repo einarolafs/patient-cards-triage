@@ -11,11 +11,9 @@ const intlDate = new Intl.DateTimeFormat('en', {
 })
 
 interface CardProps {
-  id: number
   className?: string
   onDragStart?: (event: React.DragEvent, id: number) => void
   onDragEnd?: (event: React.DragEvent, id: number) => void
-  dragging: boolean
 }
 
 type ExtendedCardsProps = CardProps & NormalizedCardInterface

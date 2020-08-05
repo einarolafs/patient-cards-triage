@@ -1,3 +1,16 @@
-module.exports = () => ({
-  presets: ['@babel/preset-env', '@babel/typescript', '@babel/react'],
-})
+module.exports = (api) => {
+  const isTestEnv = api.env('test')
+
+  return {
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          modules: isTestEnv ? 'commonjs' : false,
+        },
+      ],
+      '@babel/typescript',
+      '@babel/react',
+    ],
+  }
+}

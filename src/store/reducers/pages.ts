@@ -22,7 +22,7 @@ const pages = (state = initial, action: Action) => {
       return {
         ...state,
         ...{
-          [action.id]: { ...state[action.id], ...updatePageContent(state[action.id], action.payload) },
+          [action.id]: updatePageContent(state[action.id], action.payload),
         },
       }
     default:

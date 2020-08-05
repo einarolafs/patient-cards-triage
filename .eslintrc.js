@@ -13,6 +13,9 @@ module.exports = {
     // build environment variables
     VERSION: false,
     ENVIRONMENT: false,
+    // jest Global variables
+    render: false,
+    screen: false,
   },
   parserOptions: {
     ecmaVersion: 2020,
@@ -43,6 +46,7 @@ module.exports = {
     'compat',
     'react-hooks',
     '@typescript-eslint',
+    'jest',
     'prettier',
   ],
   extends: [
@@ -147,7 +151,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.test.js', 'test/**/*.js', '**/*.story.js', '**/*.story.data.js', 'storybook/**/*.js'],
+        devDependencies: ['**/*.test.ts', 'test/**/*.ts', '**/*.test.tsx', 'test/**/*.tsx'],
         optionalDependencies: true,
         peerDependencies: false,
       },
@@ -175,6 +179,8 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'import/unambiguous': 'error',
+
+    'init-declarations': 'off',
 
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules
     'jsx-a11y/click-events-have-key-events': 'off',
@@ -267,6 +273,8 @@ module.exports = {
         'scripts/**/*.js',
         '.eslintrc.js',
         './server/**/*.js',
+        './src/test/**/*js',
+        '*.config.js',
       ],
       rules: {
         camelcase: 'off',
@@ -277,6 +285,8 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'import/unambiguous': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        'filenames/match-regex': 'off',
+        'import/no-unassigned-import': 'off',
       },
     },
     {
