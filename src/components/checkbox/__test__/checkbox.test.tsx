@@ -26,7 +26,7 @@ describe('App', () => {
   })
 
   test('fires onChange function when input is clicked', () => {
-    fireEvent.click(element.querySelector('input'), {})
+    fireEvent.click(element.querySelector('input')!, {})
     expect(spyOnChange).toBeCalled()
   })
 })

@@ -1,4 +1,4 @@
-/* stylelint-disable a11y/media-prefers-reduced-motion */
+/* stylelint-disable plugin/stylelint-no-indistinguishable-colors, a11y/no-display-none, scss/media-feature-value-dollar-variable */
 @import "../../color.scss";
 
 .checkbox {
@@ -29,6 +29,7 @@
   padding-right: 5px;
 }
 
+/* stylelint-disable a11y/media-prefers-reduced-motion */
 .checkbox input[type="checkbox"]:checked + label::before {
   content: "\2713";
   transform: rotate(-360deg);
@@ -39,6 +40,18 @@
   background-color: $shadow-blue;
   color: #fff;
   transition: all 0.2s;
+}
+
+/* stylelint-enable a11y/media-prefers-reduced-motion */
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .checkbox label::before {
+    transition: none !important;
+  }
+
+  .checkbox label {
+    transition: none !important;
+  }
 }
 
 .checkbox input[type="checkbox"] {

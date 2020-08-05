@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect'
 
-import { CardsPageProps } from '../pages/cards-page'
+import { CardsPageProps } from '../pages/cards-page/cards-page'
 import { State, CardStatus } from '../store/types'
 
 const selectCards = (state: State) => state.cards
-const selectFilters = (state: State, props: CardsPageProps) => props.filters
+const selectFilters = (state: State, props: { filters: CardsPageProps['filters'] }) => props.filters
 
 const cardsByStatus = createSelector(selectCards, selectFilters, (cards, filters) => {
   const filteredCards = cards
