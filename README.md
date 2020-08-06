@@ -26,7 +26,7 @@ Then you can run the server with the following command:
 npm run api
 ```
 
-The project is protected from pushing up to the master branch and is also checked with git pre-push hooks to prevent any code to be pushed to the remote repository before first passing both all tests and linting.
+The project is protected from pushing up to the master branch on Github and is also checked with git pre-push hooks to prevent any code to be pushed to the remote repository before first passing both all tests and linting.
 
 Test and linting checks can also be run manually:
 ```
@@ -36,3 +36,7 @@ To run test in watch mode, run the following:
 ```
 npm run test:watch
 ```
+
+_____
+
+## Feel free to push up branches to this repository and create PRs to test the workflow
