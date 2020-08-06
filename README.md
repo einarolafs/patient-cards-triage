@@ -1,6 +1,6 @@
 # Cardiolog Code Challenge | Patient cards Triage
 
-Please see the paramters for the tests [here](CHALLANGE_DESCRIPTION.md)
+Please see the paramters for the challange [here](CHALLANGE_DESCRIPTION.md)
 
 ## How to use this project
 
