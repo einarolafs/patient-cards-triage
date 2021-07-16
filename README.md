@@ -1,4 +1,4 @@
-# Cardiolog Code Challenge | Patient cards Triage
+# Code Challenge | Patient cards Triage
 
 Please see the paramters for the challange [here](CHALLANGE_DESCRIPTION.md)
 
