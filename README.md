@@ -1,6 +1,11 @@
 # Code Challenge | Patient cards Triage
 
-Please see the paramters for the challange [here](CHALLANGE_DESCRIPTION.md)
+A Triage Patient's cards that can move cards from the TODO column to the DONE column
+
+- Fetch the patient cards using our local server
+- Display the patient cards in the corresponding column ( _Pending_ + _Rejected_ and _Done_ )
+- Allow user to change the card status from _Pending_ or _Rejected_ to _Done_ and from _Done_ to _Rejected_.
+- Add a local filtering by patient name and arrythmias
 
 ## How to use this project
 
