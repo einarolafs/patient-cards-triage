@@ -1,4 +1,4 @@
-# Code Challenge | Patient cards Triage
+# Patient cards Triage
 
 A Triage Patient's cards that can move cards from the TODO column to the DONE column
 
